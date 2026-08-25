@@ -1,8 +1,76 @@
-<!doctype html><html lang="he"><head><meta charset="utf-8">
-<title>גילא — ביקורת בגוגל</title>
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>גילא — תודה שבאתם</title>
 <meta name="robots" content="noindex">
-<!-- Printed QRs point here, never straight at Google. When the Business Profile
-     is verified, swap the URL below for the g.page/r/… short link — no reprint. -->
-<meta http-equiv="refresh" content="0; url=https://www.google.com/maps/search/?api=1&query=%D7%92%D7%99%D7%9C%D7%90%20%D7%A9%D7%90%D7%95%D7%9C%20%D7%94%D7%9E%D7%9C%D7%9A%207%20%D7%A0%D7%A1%20%D7%A6%D7%99%D7%95%D7%A0%D7%94">
-<style>body{margin:0;display:grid;place-items:center;min-height:100vh;background:#446247;color:#EEE6D9;font:16px/1.6 system-ui,sans-serif;direction:rtl}</style>
-</head><body><p>מעבירים אתכם לגוגל…</p></body></html>
+<link rel="icon" href="../logo-badge-cream.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@700;900&family=Assistant:wght@400;600;700&display=swap">
+
+<!--  ┌──────────────────────────────────────────────────────────────────────┐
+      │  WHEN THE GOOGLE BUSINESS PROFILE IS VERIFIED:                       │
+      │  1. get the short review link from the profile  (g.page/r/…/review)  │
+      │  2. paste it into GOOGLE_REVIEW_URL below                            │
+      │  3. commit + push. The printed QR codes never change.                │
+      │                                                                       │
+      │  Until then the Google button stays hidden — sending someone to an   │
+      │  empty Maps search is worse than not offering it at all.             │
+      └──────────────────────────────────────────────────────────────────────┘ -->
+<script>const GOOGLE_REVIEW_URL = "";</script>
+
+<style>
+:root{
+  --green:#446247;--green-deep:#2C4B30;--cream:#EEE6D9;--page:#FFFBF3;
+  --terracotta:#BD6955;--ink:#141D15;--ink-muted:#4A544B;
+  --display:'Rubik','Segoe UI',sans-serif;--body:'Assistant','Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;background:var(--green-deep);color:var(--cream);
+  font-family:var(--body);font-size:17px;line-height:1.6;direction:rtl;text-align:center;
+  display:flex;align-items:center;justify-content:center;padding:32px 22px;
+  -webkit-font-smoothing:antialiased;
+}
+.card{max-width:380px;width:100%;display:flex;flex-direction:column;align-items:center;gap:8px}
+.badge{width:88px;height:80px;margin-bottom:12px}
+h1{font-family:var(--display);font-weight:900;font-size:2rem;margin:0;letter-spacing:-.02em}
+p.lede{margin:6px 0 26px;color:#B9CDB8;font-size:1rem}
+a.btn{
+  display:block;width:100%;padding:16px 22px;border-radius:999px;
+  font-family:var(--body);font-weight:700;font-size:1.02rem;text-decoration:none;
+  margin-bottom:12px;
+}
+a.primary{background:var(--cream);color:var(--green-deep)}
+a.ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(238,230,217,.32)}
+.foot{margin-top:18px;font-size:.86rem;color:#8FA98E}
+.foot a{color:#B9CDB8}
+</style>
+</head>
+<body>
+<div class="card">
+  <img class="badge" src="../logo-badge-cream.svg" alt="גילא">
+  <h1>תודה שבאתם</h1>
+  <p class="lede">שמחנו לארח אתכם. אם בא לכם להישאר בקשר —</p>
+
+  <a class="btn primary" id="google" href="#" hidden>לכתוב לנו ביקורת בגוגל</a>
+  <a class="btn primary" href="https://instagram.com/gila.cafe">לעקוב אחרינו באינסטגרם</a>
+  <a class="btn ghost" href="../">לדף של גילא</a>
+
+  <p class="foot">שאול המלך 7, נס ציונה · <a href="tel:0544588849">054-458-8849</a></p>
+</div>
+
+<script>
+// The Google button only appears once a real review link exists.
+if (GOOGLE_REVIEW_URL) {
+  const g = document.getElementById('google');
+  g.href = GOOGLE_REVIEW_URL;
+  g.hidden = false;
+  // Once Google is live it becomes the primary ask; Instagram steps down a level.
+  document.querySelectorAll('a.btn.primary')[1].className = 'btn ghost';
+}
+</script>
+</body>
+</html>

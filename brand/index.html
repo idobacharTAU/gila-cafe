@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>גילא — ערכת מותג</title>
+<meta name="description" content="הלוגו, הצבעים והפונטים של גילא — כל מה שדפוס או שלטים צריכים.">
+<meta name="theme-color" content="#2C4B30">
+<link rel="icon" href="logo-badge-green.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&family=Assistant:wght@400;600;700&display=swap">
+<style>
+:root{
+  --green:#446247;--green-deep:#2C4B30;--cream:#EEE6D9;--page:#FFFBF3;--white:#fff;
+  --terracotta:#BD6955;--ink:#141D15;--ink-muted:#4A544B;--ink-faint:#6B756C;--rule:#E2D9C8;
+  --display:'Rubik','Segoe UI',sans-serif;--body:'Assistant','Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--page);color:var(--ink);font-family:var(--body);
+  font-size:17px;line-height:1.6;direction:rtl;text-align:right;
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;
+}
+.wrap{max-width:620px;margin:0 auto;padding:0 22px}
+header{background:var(--green-deep);color:var(--cream);padding:calc(38px + env(safe-area-inset-top)) 0 34px}
+header h1{font-family:var(--display);font-weight:900;font-size:clamp(1.9rem,8vw,2.5rem);margin:0 0 8px;letter-spacing:-.02em}
+header p{margin:0;color:#B9CDB8;font-size:1rem}
+header .wm{height:24px;width:auto;display:block;margin-bottom:20px}
+section{padding:36px 0 4px}
+h2{font-family:var(--display);font-weight:800;font-size:1.35rem;margin:0 0 6px;letter-spacing:-.01em}
+section > p.lede{margin:0 0 20px;color:var(--ink-muted);font-size:.97rem}
+hr{border:0;border-top:1px solid var(--rule);margin:34px 0 0}
+
+/* colours */
+.swatches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sw{border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--white)}
+.sw .chip{height:76px}
+.sw .meta{padding:11px 14px}
+.sw .meta b{display:block;font-family:var(--display);font-weight:700;font-size:.95rem}
+.sw .meta code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88rem;color:var(--ink-muted);letter-spacing:.02em}
+
+/* logos */
+.logos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lg{border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.lg .stage{height:120px;display:grid;place-items:center;padding:18px}
+.lg .stage img{max-width:100%;max-height:100%}
+.lg .stage.on-cream{background:var(--cream)}
+.lg .stage.on-green{background:var(--green)}
+.lg .files{background:var(--white);padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lg .files span{font-size:.82rem;color:var(--ink-faint);margin-inline-end:2px}
+.lg .files a{
+  font-size:.82rem;font-weight:700;text-decoration:none;color:var(--green);
+  border:1px solid var(--rule);border-radius:999px;padding:3px 11px;
+}
+.lg .files a:hover{background:var(--green);color:var(--white);border-color:var(--green)}
+
+/* type */
+.spec{border:1px solid var(--rule);border-radius:14px;background:var(--white);padding:20px;margin-bottom:12px}
+.spec .name{font-family:var(--display);font-weight:800;font-size:1.05rem;margin-bottom:2px}
+.spec .use{font-size:.88rem;color:var(--ink-faint);margin-bottom:14px}
+.spec .demo-d{font-family:var(--display);font-weight:900;font-size:2rem;line-height:1.15;letter-spacing:-.02em}
+.spec .demo-b{font-family:var(--body);font-weight:400;font-size:1.05rem;line-height:1.55}
+
+.rules{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.rules li{display:flex;gap:11px;align-items:flex-start;font-size:.97rem;line-height:1.55;color:var(--ink-muted)}
+.rules li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--green);margin-top:.58em}
+.rules b{color:var(--ink)}
+
+footer{padding:38px 0 60px;color:var(--ink-faint);font-size:.86rem;text-align:center}
+footer a{color:var(--terracotta)}
+@media (max-width:420px){.swatches,.logos{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <img class="wm" src="logo-wordmark-cream.svg" alt="גילא">
+    <h1>ערכת מותג</h1>
+    <p>הלוגו, הצבעים והפונטים. אפשר להעביר את הדף הזה כמו שהוא לכל בית דפוס או שלטים.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>הלוגו</h2>
+    <p class="lede">ה-SVG הוא הקובץ שנותנים לדפוס — הוא וקטורי ולא מאבד איכות בשום גודל. ה-PNG לשימוש דיגיטלי, עם רקע שקוף.</p>
+    <div class="logos">
+
+      <div class="lg">
+        <div class="stage on-cream"><img src="logo-badge-green.svg" alt="חותמת ירוקה"></div>
+        <div class="files"><span>חותמת · ירוק</span>
+          <a href="logo-badge-green.svg">SVG</a>
+          <a href="logo-badge-green-512.png">PNG 512</a>
+          <a href="logo-badge-green-1024.png">PNG 1024</a>
+        </div>
+      </div>
+
+      <div class="lg">
+        <div class="stage on-green"><img src="logo-badge-cream.svg" alt="חותמת קרם"></div>
+        <div class="files"><span>חותמת · קרם</span>
+          <a href="logo-badge-cream.svg">SVG</a>
+          <a href="logo-badge-cream-512.png">PNG 512</a>
+          <a href="logo-badge-cream-1024.png">PNG 1024</a>
+        </div>
+      </div>
+
+      <div class="lg">
+        <div class="stage on-cream"><img src="logo-wordmark-green.svg" alt="שם ירוק"></div>
+        <div class="files"><span>שם בלבד · ירוק</span>
+          <a href="logo-wordmark-green.svg">SVG</a>
+          <a href="logo-wordmark-green-1024.png">PNG 1024</a>
+          <a href="logo-wordmark-green-2048.png">PNG 2048</a>
+        </div>
+      </div>
+
+      <div class="lg">
+        <div class="stage on-green"><img src="logo-wordmark-cream.svg" alt="שם קרם"></div>
+        <div class="files"><span>שם בלבד · קרם</span>
+          <a href="logo-wordmark-cream.svg">SVG</a>
+          <a href="logo-wordmark-cream-1024.png">PNG 1024</a>
+          <a href="logo-wordmark-cream-2048.png">PNG 2048</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>הצבעים</h2>
+    <p class="lede">שלושת הצבעים נשאבו מקובצי הלוגו המקוריים, מהוקטור עצמו — לא מדגימה של תמונה. אלה הערכים המדויקים.</p>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#446247"></div>
+        <div class="meta"><b>ירוק זית</b><code>#446247</code></div></div>
+      <div class="sw"><div class="chip" style="background:#EEE6D9"></div>
+        <div class="meta"><b>קרם</b><code>#EEE6D9</code></div></div>
+      <div class="sw"><div class="chip" style="background:#BD6955"></div>
+        <div class="meta"><b>טרהקוטה</b><code>#BD6955</code></div></div>
+      <div class="sw"><div class="chip" style="background:#141D15"></div>
+        <div class="meta"><b>שחור־ירקרק (טקסט)</b><code>#141D15</code></div></div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>הפונטים</h2>
+    <p class="lede">שניהם חינמיים, עם תמיכה מלאה בעברית, וזמינים ב-Google Fonts. כל דפוס יכול להוריד אותם.</p>
+
+    <div class="spec">
+      <div class="name">Rubik</div>
+      <div class="use">כותרות ומספרים · משקלים 500–900</div>
+      <div class="demo-d">גילא · בית קפה שכונתי</div>
+    </div>
+
+    <div class="spec">
+      <div class="name">Assistant</div>
+      <div class="use">טקסט רץ · משקלים 400–700</div>
+      <div class="demo-b">שאול המלך 7, נס ציונה. קפה איכותי, מאפים טריים וכריכים ביתיים מהמטבח שלנו.</div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>כללי ברזל</h2>
+    <ul class="rules">
+      <li><b>טרהקוטה הוא תבלין, לא צבע רקע.</b> אלמנט אחד לכל פריט לכל היותר — נקודה, קו, כפתור. לא משטח גדול.</li>
+      <li><b>בלי אימוג׳י, בלי גרדיאנטים, בלי צללים</b> על שום דבר מודפס.</li>
+      <li><b>ספרות לטיניות תמיד</b> — ‎16 ₪‎, ‎28.08.2026‎, ‎054-458-8849‎.</li>
+      <li><b>מרווח נשימה סביב הלוגו</b> — לפחות ברוחב האות א׳ מכל צד, בלי טקסט או מסגרת שנכנסים פנימה.</li>
+      <li><b>הגרסה הירוקה על רקע בהיר, הקרם על רקע כהה.</b> לא להפוך צבעים ולא להוסיף קו מתאר.</li>
+    </ul>
+  </section>
+
+  <footer>
+    גילא · שאול המלך 7, נס ציונה · <a href="tel:0544588849">054-458-8849</a><br>
+    <a href="../">חזרה לדף של גילא</a>
+  </footer>
+
+</div>
+</body>
+</html>

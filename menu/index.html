@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>גילא — בונים את התפריט</title>
+<meta name="description" content="בוחרים סגנון, כותבים את המנות והמחירים, שומרים כ-PDF.">
+<meta name="theme-color" content="#2C4B30">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../logo-badge-cream.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&family=Assistant:wght@400;600;700&display=swap">
+<style>
+:root{
+  --green:#446247;--green-deep:#2C4B30;--green-400:#728F75;--green-900:#102914;
+  --cream:#EEE6D9;--cream-page:#FFFBF3;--white:#fff;--cream-500:#D2C7B7;--cream-700:#9F9380;
+  --terracotta:#BD6955;--terracotta-deep:#873522;
+  --ink:#141D15;--ink-muted:#3C453C;--ink-faint:#6B756C;--rule:#E2D9C8;
+  --display:'Rubik','Segoe UI',sans-serif;--body:'Assistant','Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--cream-page);color:var(--ink);font-family:var(--body);
+  font-size:17px;line-height:1.6;direction:rtl;text-align:right;
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;
+  padding-bottom:96px;                     /* room for the sticky action bar */
+}
+.wrap{max-width:620px;margin:0 auto;padding:0 18px}
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+header{background:var(--green-deep);color:var(--cream);padding:calc(30px + env(safe-area-inset-top)) 0 28px}
+header .wm{height:22px;display:block;margin-bottom:16px}
+header h1{font-family:var(--display);font-weight:900;font-size:clamp(1.7rem,7vw,2.2rem);margin:0 0 8px;letter-spacing:-.02em}
+header p{margin:0;color:#B9CDB8;font-size:.98rem}
+
+.steps{padding:26px 0 0}
+.step-h{display:flex;align-items:center;gap:10px;margin:0 0 4px}
+.step-n{
+  flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:var(--white);
+  font-family:var(--display);font-weight:800;font-size:.82rem;display:grid;place-items:center;
+}
+.step-h h2{font-family:var(--display);font-weight:800;font-size:1.18rem;margin:0;letter-spacing:-.01em}
+.step-p{margin:0 0 16px 0;padding-inline-start:36px;color:var(--ink-muted);font-size:.94rem}
+
+/* ── Style picker ─────────────────────────────────────────────────────── */
+.styles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:30px}
+.styles button{
+  appearance:none;cursor:pointer;text-align:right;font-family:var(--body);
+  background:var(--white);border:1.5px solid var(--rule);border-radius:14px;padding:13px 15px;
+  transition:border-color .15s,box-shadow .15s;
+}
+.styles button b{display:block;font-family:var(--display);font-weight:700;font-size:.98rem;color:var(--ink);margin-bottom:2px}
+.styles button span{display:block;font-size:.82rem;color:var(--ink-faint);line-height:1.45}
+.styles button[aria-pressed="true"]{border-color:var(--terracotta);box-shadow:0 0 0 3px #FFD9CF}
+.styles button:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
+
+/* ── The sheet — what actually prints ─────────────────────────────────── */
+.sheet-shell{
+  border-radius:16px;overflow:hidden;border:1px solid var(--rule);
+  box-shadow:0 1px 2px rgba(20,29,21,.05),0 10px 30px rgba(20,29,21,.08);
+  margin-bottom:20px;
+}
+.sheet{background:var(--cream-page);padding:34px 26px;font-family:var(--body)}
+.sheet .m-head{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;margin-bottom:26px}
+.sheet .m-head img{width:66px;height:60px}
+.sheet .m-title{font-family:var(--display);font-weight:900;font-size:1.85rem;color:var(--green-900);letter-spacing:-.02em}
+.sheet .m-sub{font-size:.84rem;color:var(--ink-muted)}
+
+.sec{margin-bottom:24px}
+.sec:last-of-type{margin-bottom:8px}
+.sec-title{font-family:var(--display);font-weight:800;font-size:1.22rem;color:var(--terracotta-deep);margin-bottom:6px}
+.sec-rule{border-top:1px dashed var(--cream-700);margin-bottom:12px}
+
+.row{display:flex;align-items:baseline;gap:8px;margin-bottom:11px}
+.row .nm{font-weight:600;font-size:1rem;color:var(--ink);min-width:60px}
+.row .dots{flex:1;border-bottom:1px dotted var(--cream-700);transform:translateY(-3px);min-width:16px}
+.row .pr{font-family:var(--display);font-weight:700;font-size:1rem;color:var(--green-deep);white-space:nowrap}
+.row .cur{display:none;font-family:var(--display);font-weight:700;color:var(--green-deep)}
+.row.filled .cur{display:inline}
+.row .ds{padding-inline-start:13px;font-size:.83rem;color:var(--ink-muted);margin:-9px 0 15px}
+/* An empty description shouldn't cost a full line — it shrinks to a quiet
+   "+ תיאור" hint and only opens up once she actually starts typing in it. */
+.ds:empty{font-size:.72rem;margin:-9px 0 7px;opacity:.6}
+.ds:empty::before{content:"+ תיאור"}
+.ds:focus{font-size:.83rem;margin:-9px 0 15px;opacity:1}
+
+.sheet .m-foot{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:22px}
+.sheet .m-foot img{height:22px;opacity:.6}
+.sheet .m-foot small{font-size:.75rem;color:var(--ink-faint);text-align:center}
+
+/* editable affordances — screen only */
+[contenteditable]{outline:none;border-radius:5px;transition:background .12s}
+[contenteditable]:focus{background:#FFF6DC;box-shadow:0 0 0 3px #FFF6DC}
+[contenteditable]:empty::before{content:attr(data-ph);color:#CFC7BA;font-weight:400}
+.pr[contenteditable]{min-width:34px;display:inline-block;text-align:end}
+
+.rowtools{display:flex;gap:6px;align-items:center;margin-inline-start:4px}
+.x{
+  appearance:none;cursor:pointer;flex:none;width:22px;height:22px;border-radius:50%;
+  border:1px solid var(--rule);background:var(--white);color:var(--ink-faint);
+  font-size:14px;line-height:1;display:grid;place-items:center;padding:0;
+}
+.x:hover{background:#FFECE6;color:var(--terracotta-deep);border-color:var(--terracotta)}
+.addrow,.addsec{
+  appearance:none;cursor:pointer;font-family:var(--body);font-size:.85rem;font-weight:700;
+  background:transparent;color:var(--green);border:1px dashed var(--cream-700);
+  border-radius:999px;padding:5px 14px;margin-top:2px;
+}
+.addrow:hover,.addsec:hover{background:var(--green);color:var(--white);border-style:solid;border-color:var(--green)}
+.addsec{display:block;margin:18px auto 0}
+
+/* ── Sticky actions ───────────────────────────────────────────────────── */
+.bar{
+  position:fixed;inset-inline:0;bottom:0;z-index:20;
+  background:rgba(255,251,243,.94);backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule);
+  padding:12px 18px calc(12px + env(safe-area-inset-bottom));
+}
+.bar .inner{max-width:620px;margin:0 auto;display:flex;gap:10px}
+.bar button{
+  flex:1;appearance:none;cursor:pointer;font-family:var(--body);font-weight:700;font-size:.98rem;
+  border-radius:999px;padding:14px 10px;border:1.5px solid var(--green);transition:opacity .15s;
+}
+.bar .primary{background:var(--green);color:var(--white)}
+.bar .second{background:transparent;color:var(--green)}
+.bar button:active{opacity:.75}
+.bar button[data-done="1"]{background:var(--terracotta);border-color:var(--terracotta);color:var(--white)}
+
+.saved{text-align:center;font-size:.8rem;color:var(--ink-faint);margin:0 0 22px}
+
+/* ── Style variants ───────────────────────────────────────────────────── */
+/* 1 · rustic — double frame, tilted headings, badge seal */
+.sheet[data-style="rustic"]{background:var(--cream-page);border:2px solid var(--green-deep);
+  outline:1px solid var(--green-400);outline-offset:-11px;padding:40px 30px}
+.sheet[data-style="rustic"] .m-title{transform:rotate(-1deg)}
+.sheet[data-style="rustic"] .m-head img{transform:rotate(-4deg)}
+.sheet[data-style="rustic"] .sec-title{transform:rotate(-.7deg);display:inline-block}
+
+/* 2 · minimal — white, hairlines, letterspaced labels, no ornament */
+.sheet[data-style="minimal"]{background:var(--white);padding:44px 28px}
+.sheet[data-style="minimal"] .m-head img{display:none}
+.sheet[data-style="minimal"] .m-head .wmm{display:block;height:22px}
+.sheet[data-style="minimal"] .m-title{font-size:.78rem;font-weight:700;letter-spacing:.16em;color:var(--ink-faint)}
+.sheet[data-style="minimal"] .sec-title{font-family:var(--body);font-size:.76rem;font-weight:700;
+  letter-spacing:.13em;color:var(--green-deep)}
+.sheet[data-style="minimal"] .sec-rule{border-top:1px solid #ECE5D8}
+.sheet[data-style="minimal"] .dots{border-bottom:none}
+.sheet[data-style="minimal"] .row{justify-content:space-between}
+.sheet[data-style="minimal"] .pr{font-family:var(--body);font-weight:400;color:var(--ink-faint)}
+.sheet[data-style="minimal"] .cur{font-family:var(--body);font-weight:400;color:var(--ink-faint)}
+
+/* 3 · editorial — cream ground, heavy rule, wide title */
+.sheet[data-style="editorial"]{background:var(--cream);padding:38px 28px}
+.sheet[data-style="editorial"] .m-head{align-items:flex-start;text-align:right;
+  border-bottom:3px solid var(--green-deep);padding-bottom:16px}
+.sheet[data-style="editorial"] .m-head img{width:52px;height:47px}
+.sheet[data-style="editorial"] .m-title{font-size:2.3rem;line-height:1}
+.sheet[data-style="editorial"] .sec-title{color:var(--green-deep);font-size:1.05rem;
+  letter-spacing:.02em;border-inline-start:4px solid var(--terracotta);padding-inline-start:10px}
+.sheet[data-style="editorial"] .sec-rule{display:none}
+.sheet[data-style="editorial"] .dots{border-bottom:1px solid rgba(20,29,21,.14)}
+
+/* 4 · bold — green masthead, oversized type */
+.sheet[data-style="bold"]{background:var(--white);padding:0 0 30px}
+.sheet[data-style="bold"] .m-head{background:var(--green-deep);color:var(--cream);
+  padding:32px 26px 26px;margin:0 0 26px;gap:12px}
+.sheet[data-style="bold"] .m-title{color:var(--cream);font-size:2.5rem;line-height:1}
+.sheet[data-style="bold"] .m-sub{color:#B9CDB8}
+.sheet[data-style="bold"] .sec,.sheet[data-style="bold"] .m-foot,
+.sheet[data-style="bold"] .addsec{margin-inline:26px}
+.sheet[data-style="bold"] .sec-title{font-size:1.5rem;font-weight:900;color:var(--green-deep)}
+.sheet[data-style="bold"] .sec-rule{border-top:2px solid var(--terracotta);width:44px;margin-bottom:14px}
+.sheet[data-style="bold"] .nm{font-weight:700;font-size:1.05rem}
+.sheet[data-style="bold"] .dots{border-bottom:none}
+.sheet[data-style="bold"] .row{justify-content:space-between}
+.wmm{display:none}
+
+/* ── Print: only the sheet, at A4 ─────────────────────────────────────── */
+@page{size:A4;margin:0}
+@media print{
+  body{padding:0;background:var(--white)}
+  header,.steps,.styles,.bar,.saved,.rowtools,.addrow,.addsec,.step-h,.step-p,.note{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .sheet-shell{border:none;border-radius:0;box-shadow:none;margin:0}
+  .sheet{padding:16mm 14mm;min-height:297mm}
+  .sheet[data-style="bold"]{padding:0 0 16mm}
+  .sheet[data-style="bold"] .m-head{padding:20mm 14mm 12mm}
+  .sheet[data-style="bold"] .sec,.sheet[data-style="bold"] .m-foot{margin-inline:14mm}
+  [contenteditable]:empty::before{content:""}
+  .blank{display:none!important}
+  [contenteditable]:focus{background:none;box-shadow:none}
+  .sec{break-inside:avoid}
+  .m-foot{break-inside:avoid;margin-top:14px}
+  .sheet[data-style="bold"]{padding:0 0 8mm}
+  .sheet[data-style="bold"] .m-title{font-size:2rem}
+  .sheet[data-style="bold"] .sec-title{font-size:1.25rem}
+  .sheet[data-style="bold"] .nm{font-size:1rem}
+}
+.note{
+  background:#F5F0E4;border:1px solid #EDE5D6;border-radius:14px;
+  padding:14px 17px;margin:0 0 26px;color:var(--ink-muted);font-size:.92rem;line-height:1.6;
+}
+.note b{color:var(--ink)}
+@media (max-width:430px){.styles{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <img class="wm" src="../brand/logo-wordmark-cream.svg" alt="גילא">
+    <h1>בונים את התפריט</h1>
+    <p>בוחרת סגנון, כותבת ישר על התפריט, שומרת PDF. אפשר לעצור באמצע — נשמר לבד.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="steps">
+    <div class="note">
+      <b>הכל כאן ריק בכוונה.</b> לא רצינו לשים לך מנות ומחירים שלא באו ממך — כל מה שתכתבי כאן זה מה שיודפס.
+      אפשר להוסיף ולמחוק שורות וקטגוריות כרצונך.
+    </div>
+
+    <div class="step-h"><span class="step-n">1</span><h2>בוחרים סגנון</h2></div>
+    <p class="step-p">אותו תוכן בדיוק בכל הארבעה — רק המראה משתנה. אפשר להחליף בכל רגע, גם אחרי שמילאת.</p>
+
+    <div class="styles" id="styles">
+      <button type="button" data-s="rustic" aria-pressed="true">
+        <b>כפרי ועשוי־יד</b><span>מסגרת כפולה, חותמת, כותרות מוטות קלות</span></button>
+      <button type="button" data-s="minimal" aria-pressed="false">
+        <b>נקי ומינימליסטי</b><span>קווים דקים, בלי קישוט, הכי קל לקריאה</span></button>
+      <button type="button" data-s="editorial" aria-pressed="false">
+        <b>עיתונאי</b><span>רקע קרם, כותרת גדולה, קו הפרדה חזק</span></button>
+      <button type="button" data-s="bold" aria-pressed="false">
+        <b>נועז</b><span>פס ירוק רחב למעלה, טיפוגרפיה גדולה</span></button>
+    </div>
+
+    <div class="step-h"><span class="step-n">2</span><h2>כותבים את המנות</h2></div>
+    <p class="step-p">לוחצים ישר על הטקסט ומקלידים. השדה של התיאור לא חובה — אפשר להשאיר ריק.</p>
+  </div>
+
+  <div class="sheet-shell">
+    <div class="sheet" id="sheet" data-style="rustic">
+      <div class="m-head">
+        <img src="../brand/logo-badge-green.svg" alt="גילא">
+        <img class="wmm" src="../brand/logo-wordmark-green.svg" alt="גילא">
+        <div class="m-title" contenteditable data-ph="התפריט שלנו">התפריט שלנו</div>
+        <div class="m-sub" contenteditable data-ph="בית קפה שכונתי · נס ציונה">בית קפה שכונתי · נס ציונה</div>
+      </div>
+
+      <div id="sections"></div>
+
+      <button class="addsec" type="button" id="addsec">+ קטגוריה חדשה</button>
+
+      <div class="m-foot">
+        <img src="../brand/logo-wordmark-green.svg" alt="גילא">
+        <small contenteditable data-ph="הערה בתחתית התפריט">שאלות על אלרגנים? נשמח לעזור</small>
+      </div>
+    </div>
+  </div>
+
+  <p class="saved" id="saved">&nbsp;</p>
+
+</div>
+
+<div class="bar">
+  <div class="inner">
+    <button class="primary" id="print" type="button">שמירה כ-PDF</button>
+    <button class="second" id="copy" type="button">העתקה לעידו</button>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+var KEY = "gila-menu-v1";
+var sheet    = document.getElementById("sheet");
+var sections = document.getElementById("sections");
+var savedEl  = document.getElementById("saved");
+
+// Seeded categories only — these are the four Gil already described.
+// No dish and no price is pre-filled anywhere: nothing invented ships to her.
+var SEED = {
+  style: "rustic",
+  title: "התפריט שלנו",
+  sub:   "בית קפה שכונתי · נס ציונה",
+  foot:  "שאלות על אלרגנים? נשמח לעזור",
+  sections: [
+    {name:"קפה חם",  items:[blank(),blank(),blank()]},
+    {name:"קר ורענן", items:[blank(),blank(),blank()]},
+    {name:"מאפים",    items:[blank(),blank(),blank()]},
+    {name:"כריכים",   items:[blank(),blank(),blank()]}
+  ]
+};
+function blank(){ return {name:"", desc:"", price:""}; }
+
+/* ── rendering ─────────────────────────────────────────────────────── */
+function el(tag, cls, attrs){
+  var n = document.createElement(tag);
+  if (cls) n.className = cls;
+  for (var k in attrs||{}) n.setAttribute(k, attrs[k]);
+  return n;
+}
+
+function itemNode(item){
+  var row = el("div","row");
+  var nm  = el("span","nm",{contenteditable:"true","data-ph":"שם המנה"});
+  nm.textContent = item.name || "";
+  var dots = el("span","dots");
+  var pr  = el("span","pr",{contenteditable:"true","data-ph":"00"});
+  pr.textContent = item.price || "";
+  var cur = el("span","cur"); cur.textContent = " ₪";
+  var tools = el("div","rowtools");
+  var x = el("button","x",{type:"button","aria-label":"מחיקת שורה"}); x.textContent = "×";
+  x.addEventListener("click", function(){
+    var sec = row.parentNode;
+    row.nextElementSibling && row.nextElementSibling.classList.contains("ds")
+      && row.nextElementSibling.remove();
+    row.remove(); save();
+  });
+  tools.appendChild(x);
+  row.append(nm, dots, pr, cur, tools);
+
+  var ds = el("div","ds",{contenteditable:"true","data-ph":"תיאור קצר (לא חובה)"});
+  ds.textContent = item.desc || "";
+
+  function sync(){ row.classList.toggle("filled", pr.textContent.trim() !== ""); }
+  pr.addEventListener("input", sync); sync();
+
+  return [row, ds];
+}
+
+function sectionNode(sec){
+  var wrap = el("div","sec");
+  var head = el("div",null); head.style.display="flex";
+  head.style.alignItems="baseline"; head.style.gap="8px";
+  var t = el("div","sec-title",{contenteditable:"true","data-ph":"שם הקטגוריה"});
+  t.textContent = sec.name || "";
+  var tools = el("div","rowtools");
+  var x = el("button","x",{type:"button","aria-label":"מחיקת קטגוריה"}); x.textContent = "×";
+  x.addEventListener("click", function(){ wrap.remove(); save(); });
+  tools.appendChild(x);
+  head.append(t, tools);
+
+  var rule = el("div","sec-rule");
+  var body = el("div","sec-body");
+  (sec.items||[blank()]).forEach(function(it){ body.append.apply(body, itemNode(it)); });
+
+  var add = el("button","addrow",{type:"button"}); add.textContent = "+ מנה";
+  add.addEventListener("click", function(){
+    var pair = itemNode(blank());
+    body.append(pair[0], pair[1]); pair[0].querySelector(".nm").focus(); save();
+  });
+
+  wrap.append(head, rule, body, add);
+  return wrap;
+}
+
+function render(data){
+  sheet.dataset.style = data.style || "rustic";
+  sheet.querySelector(".m-title").textContent = data.title || "";
+  sheet.querySelector(".m-sub").textContent   = data.sub   || "";
+  sheet.querySelector(".m-foot small").textContent = data.foot || "";
+  sections.textContent = "";
+  (data.sections||[]).forEach(function(s){ sections.appendChild(sectionNode(s)); });
+  document.querySelectorAll("#styles button").forEach(function(b){
+    b.setAttribute("aria-pressed", String(b.dataset.s === sheet.dataset.style));
+  });
+}
+
+/* ── state ─────────────────────────────────────────────────────────── */
+function collect(){
+  return {
+    style: sheet.dataset.style,
+    title: sheet.querySelector(".m-title").textContent.trim(),
+    sub:   sheet.querySelector(".m-sub").textContent.trim(),
+    foot:  sheet.querySelector(".m-foot small").textContent.trim(),
+    sections: [].map.call(sections.querySelectorAll(".sec"), function(sec){
+      return {
+        name: sec.querySelector(".sec-title").textContent.trim(),
+        items: [].map.call(sec.querySelectorAll(".row"), function(row){
+          var ds = row.nextElementSibling;
+          return {
+            name:  row.querySelector(".nm").textContent.trim(),
+            price: row.querySelector(".pr").textContent.trim(),
+            desc:  ds && ds.classList.contains("ds") ? ds.textContent.trim() : ""
+          };
+        })
+      };
+    })
+  };
+}
+
+var t = null;
+function save(){
+  clearTimeout(t);
+  t = setTimeout(function(){
+    try { localStorage.setItem(KEY, JSON.stringify(collect())); } catch(e){}
+    savedEl.textContent = "נשמר";
+    setTimeout(function(){ savedEl.innerHTML = "&nbsp;"; }, 1400);
+  }, 400);
+}
+
+function load(){
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) { render(JSON.parse(raw)); return; }
+  } catch(e){}
+  render(SEED);
+}
+
+/* ── wiring ────────────────────────────────────────────────────────── */
+sheet.addEventListener("input", save);
+
+// Paste as plain text — otherwise pasting from Notes drags styling into the sheet.
+sheet.addEventListener("paste", function(e){
+  e.preventDefault();
+  var txt = (e.clipboardData || window.clipboardData).getData("text");
+  document.execCommand("insertText", false, txt.replace(/\s+/g," "));
+});
+
+// Enter inside a field should move on, not create a <div> inside the cell.
+sheet.addEventListener("keydown", function(e){
+  if (e.key === "Enter" && e.target.isContentEditable){ e.preventDefault(); e.target.blur(); }
+});
+
+document.getElementById("styles").addEventListener("click", function(e){
+  var b = e.target.closest("button[data-s]"); if (!b) return;
+  sheet.dataset.style = b.dataset.s;
+  document.querySelectorAll("#styles button").forEach(function(x){
+    x.setAttribute("aria-pressed", String(x === b));
+  });
+  save();
+});
+
+document.getElementById("addsec").addEventListener("click", function(){
+  var n = sectionNode({name:"", items:[blank()]});
+  sections.appendChild(n);
+  n.querySelector(".sec-title").focus();
+  save();
+});
+
+/* A half-filled template shouldn't print its own scaffolding. Right before the
+   print dialog we mark every row she never touched — and any section left with
+   nothing in it — as blank; @media print drops them. Restored afterwards so the
+   editor keeps all its empty slots. */
+function tidyForPrint(){
+  [].forEach.call(document.querySelectorAll(".row"), function(row){
+    var empty = !row.querySelector(".nm").textContent.trim()
+             && !row.querySelector(".pr").textContent.trim();
+    row.classList.toggle("blank", empty);
+    var ds = row.nextElementSibling;
+    if (ds && ds.classList.contains("ds"))
+      ds.classList.toggle("blank", empty || !ds.textContent.trim());
+  });
+  [].forEach.call(document.querySelectorAll(".sec"), function(sec){
+    var kept = [].some.call(sec.querySelectorAll(".row"), function(r){
+      return !r.classList.contains("blank");
+    });
+    sec.classList.toggle("blank", !kept);
+  });
+}
+function untidy(){
+  [].forEach.call(document.querySelectorAll(".blank"), function(n){ n.classList.remove("blank"); });
+}
+window.addEventListener("beforeprint", tidyForPrint);
+window.addEventListener("afterprint", untidy);
+
+document.getElementById("print").addEventListener("click", function(){
+  document.activeElement && document.activeElement.blur();
+  tidyForPrint();
+  window.print();
+});
+
+document.getElementById("copy").addEventListener("click", function(){
+  var d = collect(), out = ["תפריט גילא — סגנון: " + d.style, ""];
+  d.sections.forEach(function(s){
+    var items = s.items.filter(function(i){ return i.name || i.price; });
+    if (!s.name && !items.length) return;
+    out.push("== " + (s.name || "(ללא שם)") + " ==");
+    items.forEach(function(i){
+      out.push("• " + (i.name || "?") + (i.price ? "  —  " + i.price + " ₪" : "")
+               + (i.desc ? "\n   " + i.desc : ""));
+    });
+    out.push("");
+  });
+  var text = out.join("\n");
+  var btn = this;
+  function done(){ btn.textContent = "הועתק ✓"; btn.dataset.done = "1";
+    setTimeout(function(){ btn.textContent = "העתקה לעידו"; btn.dataset.done = ""; }, 1800); }
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, fallback);
+  } else fallback();
+  function fallback(){
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); done(); } catch(e){ prompt("להעתיק ידנית:", text); }
+    ta.remove();
+  }
+});
+
+load();
+})();
+</script>
+</body>
+</html>
