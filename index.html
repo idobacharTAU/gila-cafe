@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>גילא — בית קפה שכונתי בנס ציונה</title>
-<meta name="description" content="גילא — בית קפה שכונתי בשאול המלך 7, נס ציונה. קפה איכותי, מאפים טריים וכריכים ביתיים. פתוחים ראשון עד שישי, מ־07:45 בבוקר.">
+<meta name="description" content="גילא — בית קפה שכונתי בשאול המלך 7, נס ציונה. קפה איכותי, מאפים טריים וכריכים ביתיים. פתוחים ראשון עד שישי, מ־07:45 בבוקר · בראשון מ־12:00.">
 <meta name="theme-color" content="#2C4B30">
 <link rel="icon" href="logo-badge-cream.svg" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="גילא — בית קפה שכונתי בנס ציונה">
-<meta property="og:description" content="קפה איכותי, מאפים טריים וכריכים ביתיים. שאול המלך 7, נס ציונה. פתוחים ראשון עד שישי, מ־07:45 בבוקר.">
+<meta property="og:description" content="קפה איכותי, מאפים טריים וכריכים ביתיים. שאול המלך 7, נס ציונה. פתוחים ראשון עד שישי, מ־07:45 בבוקר · בראשון מ־12:00.">
 <meta property="og:locale" content="he_IL">
 <meta property="og:url" content="https://idobachartau.github.io/gila-cafe/">
 <!-- og:image is what WhatsApp shows when the link is forwarded. It must be an
@@ -35,7 +35,7 @@
   "name":"גילא","alternateName":"Gila",
   "address":{"@type":"PostalAddress","streetAddress":"שאול המלך 7","addressLocality":"נס ציונה","postalCode":"7401607","addressCountry":"IL"},
   "telephone":"+972-54-458-8849",
-  "openingHours":["Su-Th 07:45-19:30","Fr 07:45-16:00"],
+  "openingHours":["Su 12:00-19:30","Mo-Th 07:45-19:30","Fr 07:45-16:00"],
   "url":"https://idobachartau.github.io/gila-cafe/",
   "hasMenu":"https://idobachartau.github.io/gila-cafe/menu/gila-menu.pdf",
   "image":[
@@ -338,7 +338,7 @@ footer .est{margin-top:18px;font-size:.79rem;color:#8FA98E;opacity:.85}
     <h2>שעות פתיחה</h2>
     <div class="card">
       <table class="hours" id="hours">
-        <tr data-day="0"><td>ראשון</td><td>07:45–19:30</td></tr>
+        <tr data-day="0"><td>ראשון</td><td>12:00–19:30</td></tr>
         <tr data-day="1"><td>שני</td><td>07:45–19:30</td></tr>
         <tr data-day="2"><td>שלישי</td><td>07:45–19:30</td></tr>
         <tr data-day="3"><td>רביעי</td><td>07:45–19:30</td></tr>
@@ -415,7 +415,8 @@ footer .est{margin-top:18px;font-size:.79rem;color:#8FA98E;opacity:.85}
   /* ── open / closed pill ─────────────────────────────────────────────── */
 
   // Hours as minutes-from-midnight, indexed by JS day (0 = Sunday). null = closed.
-  var HOURS = [[465,1170],[465,1170],[465,1170],[465,1170],[465,1170],[465,960],null];
+  // Sunday is the odd one out — it opens at 12:00 (720), not 07:45 (465).
+  var HOURS = [[720,1170],[465,1170],[465,1170],[465,1170],[465,1170],[465,960],null];
 
   // "now" in Israel, regardless of the visitor's own timezone
   function israelNow(){

@@ -157,6 +157,7 @@ a.row:hover{border-color:var(--green)}
 
 .warnbox{background:var(--pale);border-radius:12px;padding:13px 15px;font-size:.9rem;line-height:1.6;color:var(--terracotta-deep)}
 .warnbox b{color:var(--terracotta-deep)}
+.warnbox + .row{margin-top:12px}
 .note{background:#F5F0E4;border:1px solid #EDE5D6;border-radius:15px;padding:15px 18px;color:var(--ink-muted);font-size:.94rem;line-height:1.62}
 .note b{color:var(--ink)}
 
@@ -213,7 +214,7 @@ footer a{color:var(--terracotta-deep)}
       <a class="row" href="https://maps.google.com/?cid=8548398441999412926" target="_blank" rel="noopener">
         <span class="dot"></span>
         <span class="txt"><b>הפרופיל בגוגל</b>
-          <span>מאומת ופעיל. השעות, הכתובת, האתר והאינסטגרם מעודכנים בו, ותאריך ההקמה רשום <span class="ltr">3.9.2026</span>.</span></span>
+          <span>מאומת ופעיל. הכתובת, האתר והאינסטגרם מעודכנים בו, ותאריך ההקמה רשום <span class="ltr">3.9.2026</span>. השעות מעודכנות חוץ מראשון <span class="ltr">12:00</span>.</span></span>
         <span class="tag">מאומת</span>
         <span class="go">›</span>
       </a>
@@ -229,7 +230,7 @@ footer a{color:var(--terracotta-deep)}
       <a class="row" href="https://www.google.com/search?q=%D7%92%D7%99%D7%9C%D7%90%20site%3Aeasy.co.il" target="_blank" rel="noopener">
         <span class="dot"></span>
         <span class="txt"><b>איזי</b>
-          <span>הרישום חי, עם השעות החדשות, ומאונדקס בגוגל.</span></span>
+          <span>הרישום חי ומאונדקס בגוגל. גם כאן השעות מעודכנות חוץ מראשון <span class="ltr">12:00</span>.</span></span>
         <span class="tag">חי</span>
         <span class="go">›</span>
       </a>
@@ -283,23 +284,32 @@ footer a{color:var(--terracotta-deep)}
   <!-- 2 ─ השעות ───────────────────────────────────────────────────── -->
   <section>
     <div class="eyebrow">השתנה</div>
-    <h2>השעות שרשומות היום</h2>
-    <p class="lede">אלה השעות שמופיעות עכשיו בגוגל, באיזי ובאתר. הן הסופיות.</p>
+    <h2>השעות הנכונות</h2>
+    <p class="lede">אלה השעות של גילא. ראשון ב-<span class="ltr">12:00</span> הוא השינוי האחרון, והוא עוד לא רשום בכל מקום.</p>
 
     <div class="hourscard">
       <table>
-        <tr><td>ראשון–חמישי</td><td><span class="ltr">07:45–19:30</span></td></tr>
+        <tr><td>ראשון</td><td><span class="ltr">12:00–19:30</span></td></tr>
+        <tr><td>שני–חמישי</td><td><span class="ltr">07:45–19:30</span></td></tr>
         <tr><td>שישי</td><td><span class="ltr">07:45–16:00</span></td></tr>
         <tr><td>שבת</td><td class="shut">סגור</td></tr>
       </table>
     </div>
 
     <div class="warnbox">
-      <b>הן החליפו את <span class="ltr">06:30–19:00</span> שהיו בתכנון המקורי.</b>
-      קבצי הדפוס שנושאים שעות — דף השעות לדלת ושלט פתוח/סגור — כבר נבנו מחדש עם השעות החדשות,
-      וההורדות למטה הן הגרסאות המתוקנות. אם הדפסת אותם לפני היום, הנייר שתלוי הוא הישן — להחליף.
-      חלק מגרפיקות האינסטגרם עדיין נושאות את השעות הישנות; סימנתי למטה בדיוק אילו.
+      <b>נשאר לעדכן: ראשון נפתח ב-<span class="ltr">12:00</span> — בגוגל ובאיזי עדיין רשום <span class="ltr">07:45</span>.</b>
+      זה הדבר היחיד בשעות שעוד לא נכנס, ועד שהוא ישתנה בשני המקומות האלה,
+      מי שיחפש אותך בראשון בבוקר יראה שפתוח ויגיע לדלת סגורה.
+      שאר השעות זהות בכל מקום, והן שהחליפו את <span class="ltr">06:30–19:00</span> שהיו בתכנון המקורי.
+      קבצי הדפוס שנושאים שעות — דף השעות לדלת ושלט פתוח/סגור — כבר נבנו מחדש עם ראשון
+      <span class="ltr">12:00</span>, וההורדות למטה הן הגרסאות המתוקנות. אם הדפסת אותם לפני היום,
+      הנייר שתלוי הוא הישן — להחליף.
     </div>
+
+    <a class="row" href="https://business.google.com/" target="_blank" rel="noopener">
+      <span class="txt"><b>לעדכן את ראשון בגוגל</b>
+        <span>פרופיל העסק · שעות פעילות · ראשון <span class="ltr">12:00–19:30</span>.</span></span>
+      <span class="go">›</span></a>
   </section>
 
   <hr>
@@ -327,6 +337,7 @@ footer a{color:var(--terracotta-deep)}
         <p>כל החבילה נבנתה מחדש היום — הספירה לאחור והתאריך הישן נזרקו, ובמקומם יש
           ״פתחנו״, התפריט, איפה אנחנו, השעות, סטורי ״פתוחים עכשיו״ ופוסט שמבקש מהשכנים לספר.
           הכל בהורדות למטה, עם השעות הנכונות.</p>
+        <p>יש עכשיו גם <b class="hl">כרטיס אינסטגרם מודפס</b> — קוד סריקה לדלפק ולשולחן שפותח את הפרופיל ישירות. בהורדות למטה.</p>
         <a class="row" href="https://instagram.com/gila.cafe" target="_blank" rel="noopener">
           <span class="txt"><b>לפתוח את <span class="ltr">@gila.cafe</span></b></span><span class="go">›</span></a>
       </div>
@@ -429,12 +440,16 @@ footer a{color:var(--terracotta-deep)}
         <span class="txt"><b>מדבקה לכוס</b><span>‎40×40 מ״מ · עגולה, לוגו ו-<span class="ltr">@gila.cafe</span>. אין עליה שעות — תקפה לגמרי.</span></span>
         <span class="tag">מוכן</span><span class="go">›</span></a>
 
+      <a class="row" href="../print/insta-card.pdf">
+        <span class="txt"><b>כרטיס אינסטגרם</b><span>‎A6 לדלפק · <span class="ltr">85×55</span> מ״מ לשולחן · קוד סריקה שפותח את <span class="ltr">@gila.cafe</span>. אין עליו שעות — לא מתיישן.</span></span>
+        <span class="tag">מוכן</span><span class="go">›</span></a>
+
       <a class="row" href="../print/door-hours.pdf">
-        <span class="txt"><b>שעות פתיחה לדלת</b><span>‎148×210 מ״מ · נושא את השעות החדשות, <span class="ltr">07:45–19:30</span>. אם תלוי שם דף מהדפסה קודמת — להחליף בזה.</span></span>
+        <span class="txt"><b>שעות פתיחה לדלת</b><span>‎148×210 מ״מ · נושא את השעות החדשות, עם ראשון <span class="ltr">12:00–19:30</span>. אם תלוי שם דף מהדפסה קודמת — להחליף בזה.</span></span>
         <span class="tag">מוכן</span><span class="go">›</span></a>
 
       <a class="row" href="../print/open-closed.pdf">
-        <span class="txt"><b>שלט פתוח / סגור</b><span>‎150×150 מ״מ · דו-צדדי. השעות בתחתית הן החדשות.</span></span>
+        <span class="txt"><b>שלט פתוח / סגור</b><span>‎150×150 מ״מ · דו-צדדי. השעות בתחתית הן החדשות, כולל ראשון מ-<span class="ltr">12:00</span>.</span></span>
         <span class="tag">מוכן</span><span class="go">›</span></a>
 
       <a class="row" href="../print/window-poster.pdf">
@@ -477,7 +492,7 @@ footer a{color:var(--terracotta-deep)}
 
   <footer>
     גילא · שאול המלך 7, נס ציונה · <a href="tel:0544588849"><span class="ltr">054-458-8849</span></a><br>
-    א׳–ה׳ <span class="ltr">07:45–19:30</span> · ו׳ <span class="ltr">07:45–16:00</span> · שבת סגור
+    א׳ <span class="ltr">12:00–19:30</span> · ב׳–ה׳ <span class="ltr">07:45–19:30</span> · ו׳ <span class="ltr">07:45–16:00</span> · שבת סגור
   </footer>
 
 </div>

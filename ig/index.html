@@ -1,6 +1,29 @@
-<!doctype html><html lang="he"><head><meta charset="utf-8">
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>גילא — אינסטגרם</title>
 <meta name="robots" content="noindex">
 <meta http-equiv="refresh" content="0; url=https://instagram.com/gila.cafe">
-<style>body{margin:0;display:grid;place-items:center;min-height:100vh;background:#446247;color:#EEE6D9;font:16px/1.6 system-ui,sans-serif;direction:rtl}</style>
-</head><body><p>מעבירים אתכם לאינסטגרם…</p></body></html>
+<!--  This page is the target of qr-insta.svg, which is now PRINTED on the door sheet,
+      the window poster, the WiFi card and the Instagram card. Printed QR codes cannot
+      be recalled, so this redirect has to survive every way it can be reached:
+        1. meta refresh          — works everywhere, including with JS disabled
+        2. location.replace      — instant, and leaves no history entry to trap Back
+        3. a visible tappable link — the fallback when a scanner's in-app browser
+           blocks both of the above. Without it a blocked redirect is a dead end.  -->
+<style>
+  body{margin:0;min-height:100vh;display:grid;place-items:center;gap:18px;
+       background:#446247;color:#EEE6D9;text-align:center;padding:32px;
+       font:16px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif}
+  img{width:84px;height:77px}
+  a{display:inline-block;margin-top:4px;padding:14px 26px;border-radius:999px;
+    background:#EEE6D9;color:#2C4B30;font-weight:700;text-decoration:none}
+  .h{direction:ltr;unicode-bidi:isolate}
+</style>
+</head><body>
+  <div>
+    <img src="../logo-badge-cream.svg" alt="גילא">
+    <p>מעבירים אתכם לאינסטגרם של גילא…</p>
+    <a href="https://instagram.com/gila.cafe"><span class="h">@gila.cafe</span></a>
+  </div>
+<script>location.replace('https://instagram.com/gila.cafe')</script>
+</body></html>
