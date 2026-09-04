@@ -162,6 +162,9 @@ footer{
 footer .wm{width:52px;height:48px;display:block;margin:0 auto 16px;opacity:.9}
 footer .row{margin:5px 0}
 footer a{color:var(--cream);text-decoration:none;font-weight:600}
+/* phone + instagram are real tap targets, not 18px-tall text links */
+footer .row a{display:inline-block;padding:11px 14px;border-radius:999px}
+footer .row a:hover{background:rgba(238,230,217,.1);text-decoration:none}
 footer a:hover{text-decoration:underline}
 footer .links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px}
 footer .links a{
