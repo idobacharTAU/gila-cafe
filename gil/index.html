@@ -158,6 +158,7 @@ a.row:hover{border-color:var(--green)}
 .warnbox{background:var(--pale);border-radius:12px;padding:13px 15px;font-size:.9rem;line-height:1.6;color:var(--terracotta-deep)}
 .warnbox b{color:var(--terracotta-deep)}
 .warnbox + .row{margin-top:12px}
+.rows + .note{margin-top:12px}
 .note{background:#F5F0E4;border:1px solid #EDE5D6;border-radius:15px;padding:15px 18px;color:var(--ink-muted);font-size:.94rem;line-height:1.62}
 .note b{color:var(--ink)}
 
@@ -219,11 +220,12 @@ footer a{color:var(--terracotta-deep)}
         <span class="go">›</span>
       </a>
 
-      <a class="row" href="https://waze.com/ul?q=%D7%92%D7%99%D7%9C%D7%90%20%D7%A0%D7%A1%20%D7%A6%D7%99%D7%95%D7%A0%D7%94&navigate=yes" target="_blank" rel="noopener">
-        <span class="dot"></span>
+      <a class="row" href="https://waze.com/ul?q=%D7%A9%D7%90%D7%95%D7%9C%20%D7%94%D7%9E%D7%9C%D7%9A%207%20%D7%A0%D7%A1%20%D7%A6%D7%99%D7%95%D7%A0%D7%94&navigate=yes" target="_blank" rel="noopener">
+        <span class="dot warn"></span>
         <span class="txt"><b>Waze</b>
-          <span>חיפוש ״גילא נס ציונה״ מוצא אותך. עד לא מזמן זה החזיר אפס תוצאות.</span></span>
-        <span class="tag">חי</span>
+          <span>הקישור מנווט לפי הכתובת, וזה עובד. שחיפוש ״גילא״ בשם ימצא אותך — עוד לא אומת.
+            את המקום מוסיפים מהאפליקציה, וזה עובר תור אישור של קהילת העורכים.</span></span>
+        <span class="tag warn">ממתין</span>
         <span class="go">›</span>
       </a>
 
@@ -238,7 +240,7 @@ footer a{color:var(--terracotta-deep)}
       <a class="row" href="https://instagram.com/gila.cafe" target="_blank" rel="noopener">
         <span class="dot warn"></span>
         <span class="txt"><b>אינסטגרם <span class="ltr">@gila.cafe</span></b>
-          <span>276 עוקבים — ואפס פוסטים. זה החלון הכי גדול שפתוח לגילא, והוא ריק. משימה 1 למטה.</span></span>
+          <span>276 עוקבים — ואפס פוסטים. זה החלון הכי גדול שפתוח לגילא, והוא ריק. משימה 2 למטה.</span></span>
         <span class="tag warn">ריק</span>
         <span class="go">›</span>
       </a>
@@ -301,7 +303,7 @@ footer a{color:var(--terracotta-deep)}
       זה הדבר היחיד בשעות שעוד לא נכנס, ועד שהוא ישתנה בשני המקומות האלה,
       מי שיחפש אותך בראשון בבוקר יראה שפתוח ויגיע לדלת סגורה.
       שאר השעות זהות בכל מקום, והן שהחליפו את <span class="ltr">06:30–19:00</span> שהיו בתכנון המקורי.
-      קבצי הדפוס שנושאים שעות — דף השעות לדלת ושלט פתוח/סגור — כבר נבנו מחדש עם ראשון
+      קבצי הדפוס שנושאים שעות — דף השעות לדלת, שלט פתוח/סגור והפוסטר לחלון — כבר נבנו מחדש עם ראשון
       <span class="ltr">12:00</span>, וההורדות למטה הן הגרסאות המתוקנות. אם הדפסת אותם לפני היום,
       הנייר שתלוי הוא הישן — להחליף.
     </div>
@@ -318,11 +320,34 @@ footer a{color:var(--terracotta-deep)}
   <section>
     <div class="eyebrow">נשאר פתוח</div>
     <h2>מה נשאר לסגור</h2>
-    <p class="lede">חמישה דברים, לפי דחיפות. רק שני הראשונים באמת לוחצים.</p>
+    <p class="lede">שישה דברים, לפי דחיפות. רק שלושת הראשונים באמת לוחצים.</p>
 
     <details class="task" data-hot open>
       <summary>
         <span class="n">1</span>
+        <span class="head"><b>ראשון ב-<span class="ltr">12:00</span> — בגוגל ובאיזי</b>
+          <span>שני עדכונים ידניים שרק את יכולה לעשות. הכי דחוף ברשימה.</span></span>
+        <span class="chev">▾</span>
+      </summary>
+      <div class="detail">
+        <p>בשני הרישומים האלה ראשון עדיין רשום <span class="ltr">07:45</span>, ועד שזה ישתנה
+          מי שיחפש אותך בראשון בבוקר יראה שפתוח ויגיע לדלת סגורה. באתר, בקבצי הדפוס
+          ובגרפיקות השעה כבר נכונה.</p>
+        <p><b class="hl">בגוגל:</b> <span class="ltr">business.google.com</span> · הפרופיל של גילא ·
+          שעות פעילות · ראשון · <span class="ltr">12:00–19:30</span>. לשמור.</p>
+        <p><b class="hl">באיזי:</b> <span class="ltr">easy.co.il</span> · לערוך את העסק · לשונית ״שעות״.
+          שם יש מתג ״זהה בימים ראשון - חמישי״ — <b class="hl">לכבות אותו</b>, אחרת ראשון לא יכול
+          להיות שונה משני–חמישי. אחר כך לתת לראשון שורה משלו: <span class="ltr">12:00–19:30</span>.</p>
+        <a class="row" href="https://business.google.com/" target="_blank" rel="noopener">
+          <span class="txt"><b>לעדכן את ראשון בגוגל</b></span><span class="go">›</span></a>
+        <a class="row" href="https://easy.co.il/edit?bizid=10166510" target="_blank" rel="noopener">
+          <span class="txt"><b>לעדכן את ראשון באיזי</b></span><span class="go">›</span></a>
+      </div>
+    </details>
+
+    <details class="task" data-hot>
+      <summary>
+        <span class="n">2</span>
         <span class="head"><b>לפרסם באינסטגרם</b>
           <span>276 עוקבים, אפס פוסטים. הדבר הכי דחוף ברשימה.</span></span>
         <span class="chev">▾</span>
@@ -345,7 +370,7 @@ footer a{color:var(--terracotta-deep)}
 
     <details class="task" data-hot>
       <summary>
-        <span class="n">2</span>
+        <span class="n">3</span>
         <span class="head"><b>תמונות לפרופיל בגוגל</b>
           <span>12 תמונות נבחרו ומחכות. עשר דקות מול המחשב.</span></span>
         <span class="chev">▾</span>
@@ -365,7 +390,7 @@ footer a{color:var(--terracotta-deep)}
 
     <details class="task">
       <summary>
-        <span class="n">3</span>
+        <span class="n">4</span>
         <span class="head"><b>ביקורות — לפזר, לא לשגר</b>
           <span>גוגל השהתה זמנית פרסום ביקורות בפרופיל. כדאי להבין למה.</span></span>
         <span class="chev">▾</span>
@@ -384,7 +409,7 @@ footer a{color:var(--terracotta-deep)}
 
     <details class="task">
       <summary>
-        <span class="n">4</span>
+        <span class="n">5</span>
         <span class="head"><b>השם של עסק הכריכים</b>
           <span><span class="nb">ה-B2B</span> שחולק איתך את המטבח. שורה אחת בוואטסאפ.</span></span>
         <span class="chev">▾</span>
@@ -398,7 +423,7 @@ footer a{color:var(--terracotta-deep)}
 
     <details class="task">
       <summary>
-        <span class="n">5</span>
+        <span class="n">6</span>
         <span class="head"><b>פייסבוק — אם בכלל</b>
           <span>הכי פחות דחוף בכל הרשימה.</span></span>
         <span class="chev">▾</span>
@@ -453,10 +478,13 @@ footer a{color:var(--terracotta-deep)}
         <span class="tag">מוכן</span><span class="go">›</span></a>
 
       <a class="row" href="../print/window-poster.pdf">
-        <span class="txt"><b>פוסטר לחלון</b><span>‎420×594 מ״מ · ״פתחנו״, ומתחתיו השעות החדשות. הוחלף — הגרסה עם תאריך הפתיחה כבר לא כאן.</span></span>
+        <span class="txt"><b>פוסטר לחלון</b><span>‎420×594 מ״מ · ״פתחנו״, ומתחתיו השעות החדשות, עם ראשון מ-<span class="ltr">12:00</span>. הוחלף — הגרסה עם תאריך הפתיחה כבר לא כאן.</span></span>
         <span class="tag">מוכן</span><span class="go">›</span></a>
 
     </div>
+
+    <div class="note">שני כרטיסי <span class="nb">ה-WiFi</span> — לדלפק ולשולחן — לא כאן בכוונה:
+      הסיסמה מודפסת עליהם, והדף הזה יושב על כתובת ציבורית. הם בתיקייה ששלחתי לך בוואטסאפ.</div>
 
     <h3 class="sub">גרפיקות לאינסטגרם · מה שאפשר להעלות היום</h3>
     <div class="grid2">
@@ -465,7 +493,7 @@ footer a{color:var(--terracotta-deep)}
       <a class="row" href="../social/03-where-photo.png"><span class="txt"><b>איפה אנחנו</b><span>פוסט · על תמונה אמיתית</span></span><span class="go">›</span></a>
       <a class="row" href="../social/04-hours.png"><span class="txt"><b>מתי אנחנו פתוחים</b><span>פוסט · השעות הנכונות</span></span><span class="go">›</span></a>
       <a class="row" href="../social/05-tell-the-neighbours.png"><span class="txt"><b>ספרו לשכנים</b><span>פוסט · בקשת ביקורות</span></span><span class="go">›</span></a>
-      <a class="row" href="../social/10-story-open-now.png"><span class="txt"><b>פתוחים עכשיו</b><span>סטורי · 1080×1920</span></span><span class="go">›</span></a>
+      <a class="row" href="../social/10-story-open-now.png"><span class="txt"><b>פתוחים עכשיו</b><span>סטורי · ‎1080×1920</span></span><span class="go">›</span></a>
       <a class="row" href="../social/06-location.png"><span class="txt"><b>איפה אנחנו — גרסת טקסט</b><span>פוסט</span></span><span class="go">›</span></a>
       <a class="row" href="../social/07-cover-menu.png"><span class="txt"><b>כיסוי · תפריט</b><span>Highlights</span></span><span class="go">›</span></a>
       <a class="row" href="../social/08-cover-hours.png"><span class="txt"><b>כיסוי · שעות</b><span>Highlights</span></span><span class="go">›</span></a>
