@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>גילא — בית קפה שכונתי בנס ציונה</title>
-<meta name="description" content="גילא — בית קפה שכונתי בשאול המלך 7, נס ציונה. קפה איכותי, מאפים טריים וכריכים ביתיים. נפתחים שישי 28.08.2026.">
+<meta name="description" content="גילא — בית קפה שכונתי בשאול המלך 7, נס ציונה. קפה איכותי, מאפים טריים וכריכים ביתיים. פתוחים ראשון עד שישי, מ־07:45 בבוקר.">
 <meta name="theme-color" content="#2C4B30">
 <link rel="icon" href="logo-badge-cream.svg" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="גילא — בית קפה שכונתי בנס ציונה">
-<meta property="og:description" content="קפה איכותי, מאפים טריים וכריכים ביתיים. שאול המלך 7, נס ציונה. נפתחים שישי 28.08.2026.">
+<meta property="og:description" content="קפה איכותי, מאפים טריים וכריכים ביתיים. שאול המלך 7, נס ציונה. פתוחים ראשון עד שישי, מ־07:45 בבוקר.">
 <meta property="og:locale" content="he_IL">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,8 +23,10 @@
   "name":"גילא","alternateName":"Gila",
   "address":{"@type":"PostalAddress","streetAddress":"שאול המלך 7","addressLocality":"נס ציונה","postalCode":"7401607","addressCountry":"IL"},
   "telephone":"+972-54-458-8849",
-  "openingHours":["Su-Th 06:30-19:00","Fr 06:30-15:00"],
-  "sameAs":["https://instagram.com/gila.cafe"]
+  "openingHours":["Su-Th 07:45-19:30","Fr 07:45-16:00"],
+  "url":"https://idobachartau.github.io/gila-cafe/",
+  "hasMenu":"https://idobachartau.github.io/gila-cafe/menu/gila-menu.pdf",
+  "sameAs":["https://instagram.com/gila.cafe","https://maps.google.com/?cid=8548398441999412926"]
 }
 </script>
 
@@ -73,21 +75,30 @@ body{
 .status[data-state="open"]{background:rgba(143,169,142,.18);border-color:#8FA98E}
 .status[data-state="open"] .dot{background:#9BD49A;box-shadow:0 0 0 4px rgba(155,212,154,.22)}
 .status[data-state="closed"] .dot{background:var(--terracotta)}
-.status[data-state="soon"]{background:rgba(189,105,85,.16);border-color:var(--terracotta)}
-.status[data-state="soon"] .dot{background:var(--terracotta)}
-.status b{font-family:var(--display);font-weight:900}
+/* times/numbers inside the pill stay LTR-isolated so 19:00 never flips */
+.status b{font-family:var(--display);font-weight:900;direction:ltr;unicode-bidi:isolate}
 
-/* ── Countdown ────────────────────────────────────────────────────────── */
-.opening{
+/* ── Menu card — the first thing you see now that we're open ──────────── */
+.menu-card{
+  display:block;text-decoration:none;color:var(--ink);
   background:var(--white);border:1px solid var(--rule);border-radius:22px;
   margin:-26px auto 0;position:relative;z-index:2;padding:26px 24px;text-align:center;
   box-shadow:0 1px 2px rgba(20,29,21,.04), 0 14px 34px rgba(20,29,21,.07);
+  transition:border-color .15s,transform .1s;
 }
-.opening .eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.16em;color:var(--terracotta-deep);margin-bottom:10px}
-.opening .date{font-family:var(--display);font-weight:900;font-size:clamp(2rem,9vw,2.6rem);color:var(--green-deep);line-height:1;letter-spacing:-.02em}
-.opening .day{margin:8px 0 0;color:var(--ink-muted);font-size:.98rem}
-.opening .left{margin:16px 0 0;font-size:.9rem;color:var(--ink-faint)}
-.opening .left b{color:var(--terracotta-deep);font-family:var(--display);font-weight:800;font-size:1.05rem}
+.menu-card:hover{border-color:var(--green)}
+.menu-card:active{transform:scale(.99)}
+.menu-card:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px}
+.menu-card .eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.16em;color:var(--terracotta-deep);margin-bottom:10px}
+.menu-card .title{font-family:var(--display);font-weight:900;font-size:clamp(1.5rem,6.4vw,1.9rem);color:var(--green-deep);line-height:1.12;letter-spacing:-.02em}
+.menu-card .sub{margin:8px 0 0;color:var(--ink-muted);font-size:.98rem}
+.menu-card .go{
+  display:inline-flex;align-items:center;gap:9px;margin-top:18px;
+  background:var(--green);color:var(--cream);border-radius:999px;
+  padding:11px 24px;font-weight:700;font-size:.97rem;transition:background .15s;
+}
+.menu-card:hover .go{background:var(--green-deep)}
+.menu-card .go svg{width:15px;height:15px;flex:none;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
 /* ── Sections ─────────────────────────────────────────────────────────── */
 section{padding:36px 0 0}
@@ -104,7 +115,7 @@ h2{
 .hours tr[data-today="1"]{background:#F4F7F2}
 .hours td{padding:14px 20px;font-size:1.02rem}
 .hours td:first-child{font-weight:700;color:var(--ink);width:38%}
-.hours td:last-child{text-align:left;direction:ltr;color:var(--ink-muted);font-weight:600}
+.hours td:last-child{text-align:left;direction:ltr;color:var(--ink-muted);font-weight:600;white-space:nowrap}
 .hours .shut{color:var(--terracotta-deep)}
 .hours tr[data-today="1"] td:first-child::after{
   content:"היום";margin-inline-start:8px;font-size:.68rem;font-weight:700;
@@ -140,10 +151,17 @@ h2{
 .place .nav a:hover{border-color:var(--green);background:#FDFCF7}
 .place .nav a:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px}
 
-.soon{
-  margin-top:14px;padding:16px 20px;border:1px dashed var(--rule);border-radius:18px;
-  color:var(--ink-faint);font-size:.94rem;text-align:center;
+/* gentle nudge to leave a Google review — always via our own ./r/ page */
+.review{
+  display:flex;align-items:center;gap:11px;margin-top:14px;
+  padding:15px 18px;background:var(--white);border:1px solid var(--rule);border-radius:18px;
+  text-decoration:none;color:var(--ink-muted);font-size:.94rem;font-weight:600;
+  transition:border-color .15s,background .15s;
 }
+.review:hover{border-color:var(--green);background:#FDFCF7}
+.review:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px}
+.review .star{width:19px;height:19px;flex:none;stroke:var(--terracotta);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.review .chev{width:15px;height:15px;flex:none;margin-inline-start:auto;stroke:var(--ink-faint);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
 footer{
   margin-top:44px;background:var(--green-deep);color:#8FA98E;
@@ -153,6 +171,16 @@ footer .wm{width:52px;height:48px;display:block;margin:0 auto 16px;opacity:.9}
 footer a{color:var(--cream);text-decoration:none;font-weight:600}
 footer a:hover{text-decoration:underline}
 footer .row{margin:5px 0}
+/* footer links are real touch targets, not 18px-tall hairlines */
+footer .row a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:2px 0;padding:0 16px;border-radius:999px}
+footer .est{margin-top:18px;font-size:.79rem;color:#8FA98E;opacity:.85}
+
+/* narrowest phones (~280px): trim the cell gutters so the היום badge
+   can't squeeze the times column and split 07:45–19:30 over two lines */
+@media (max-width:320px){
+  .hours td{padding:13px 15px}
+  .hours tr[data-today="1"] td:first-child::after{margin-inline-start:6px;padding:2px 6px}
+}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -165,31 +193,34 @@ footer .row{margin:5px 0}
     <h1>גילא</h1>
     <p class="tag">בית קפה שכונתי</p>
     <p class="addr">שאול המלך 7, נס ציונה</p>
-    <div class="status" id="status" data-state="soon" role="status">
-      <span class="dot"></span><span id="statusText">נפתחים בקרוב</span>
+    <div class="status" id="status" role="status">
+      <span class="dot"></span><span id="statusText">פתוחים</span>
     </div>
   </div>
 </header>
 
 <div class="wrap">
 
-  <div class="opening" id="opening">
-    <div class="eyebrow">יום הפתיחה</div>
-    <div class="date">28.08.2026</div>
-    <p class="day">יום שישי · 06:30</p>
-    <p class="left" id="daysLeft"></p>
-  </div>
+  <a class="menu-card" href="./menu/">
+    <div class="eyebrow">התפריט</div>
+    <div class="title">קפה, מאפים וכריכים</div>
+    <p class="sub">כל מה שיש אצלנו, בדף אחד</p>
+    <span class="go">
+      לתפריט המלא
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </span>
+  </a>
 
   <section>
     <h2>שעות פתיחה</h2>
     <div class="card">
       <table class="hours" id="hours">
-        <tr data-day="0"><td>ראשון</td><td>06:30–19:00</td></tr>
-        <tr data-day="1"><td>שני</td><td>06:30–19:00</td></tr>
-        <tr data-day="2"><td>שלישי</td><td>06:30–19:00</td></tr>
-        <tr data-day="3"><td>רביעי</td><td>06:30–19:00</td></tr>
-        <tr data-day="4"><td>חמישי</td><td>06:30–19:00</td></tr>
-        <tr data-day="5"><td>שישי</td><td>06:30–15:00</td></tr>
+        <tr data-day="0"><td>ראשון</td><td>07:45–19:30</td></tr>
+        <tr data-day="1"><td>שני</td><td>07:45–19:30</td></tr>
+        <tr data-day="2"><td>שלישי</td><td>07:45–19:30</td></tr>
+        <tr data-day="3"><td>רביעי</td><td>07:45–19:30</td></tr>
+        <tr data-day="4"><td>חמישי</td><td>07:45–19:30</td></tr>
+        <tr data-day="5"><td>שישי</td><td>07:45–16:00</td></tr>
         <tr data-day="6"><td>שבת</td><td class="shut">סגור</td></tr>
       </table>
     </div>
@@ -227,7 +258,11 @@ footer .row{margin:5px 0}
         <a href="https://www.google.com/maps/search/?api=1&query=%D7%A9%D7%90%D7%95%D7%9C%20%D7%94%D7%9E%D7%9C%D7%9A%207%20%D7%A0%D7%A1%20%D7%A6%D7%99%D7%95%D7%A0%D7%94" target="_blank" rel="noopener">Google Maps</a>
       </div>
     </div>
-    <div class="soon">התפריט המלא יעלה לכאן לקראת הפתיחה.</div>
+    <a class="review" href="./r/">
+      <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.6 5.3 5.8.85-4.2 4.1 1 5.75L12 16.9l-5.2 2.7 1-5.75-4.2-4.1 5.8-.85z"/></svg>
+      <span>הייתם אצלנו? נשמח לביקורת קצרה בגוגל</span>
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </a>
   </section>
 
 </div>
@@ -237,7 +272,8 @@ footer .row{margin:5px 0}
     <img class="wm" src="logo-badge-cream.svg" alt="גילא" width="52" height="48">
     <div class="row">שאול המלך 7, נס ציונה</div>
     <div class="row"><a href="tel:+972544588849">054-458-8849</a></div>
-    <div class="row"><a href="https://instagram.com/gila.cafe" target="_blank" rel="noopener">@gila.cafe</a></div>
+    <div class="row"><a href="https://instagram.com/gila.cafe" target="_blank" rel="noopener"><span style="direction:ltr;unicode-bidi:isolate">@gila.cafe</span></a></div>
+    <div class="row est">בית קפה שכונתי · נפתחנו בספטמבר 2026</div>
   </div>
 </footer>
 
@@ -246,8 +282,7 @@ footer .row{margin:5px 0}
   "use strict";
 
   // Hours as minutes-from-midnight, indexed by JS day (0 = Sunday). null = closed.
-  var HOURS = [[390,1140],[390,1140],[390,1140],[390,1140],[390,1140],[390,900],null];
-  var OPENING = Date.UTC(2026, 7, 28, 3, 30); // 28.08.2026 06:30 Israel (UTC+3)
+  var HOURS = [[465,1170],[465,1170],[465,1170],[465,1170],[465,1170],[465,960],null];
 
   // "now" in Israel, regardless of the visitor's own timezone
   function israelNow(){
@@ -276,27 +311,12 @@ footer .row{margin:5px 0}
     var now = israelNow();
     var pill = document.getElementById('status');
     var text = document.getElementById('statusText');
-    var opening = document.getElementById('opening');
-    var left = document.getElementById('daysLeft');
 
     // mark today in the hours table
     var row = document.querySelector('#hours tr[data-day="' + now.day + '"]');
     if (row) row.setAttribute('data-today','1');
 
-    var msLeft = OPENING - Date.now();
-
-    if (msLeft > 0){
-      var days = Math.ceil(msLeft / 86400000);
-      pill.setAttribute('data-state','soon');
-      text.innerHTML = days > 1 ? 'נפתחים בעוד <b>' + days + '</b> ימים'
-                     : days === 1 ? 'נפתחים <b>מחר</b>'
-                     : 'נפתחים <b>היום</b>';
-      left.innerHTML = days > 1 ? 'עוד <b>' + days + '</b> ימים' : '';
-      return;
-    }
-
-    // open for business — show live state
-    opening.style.display = 'none';
+    // live open/closed state, straight from HOURS
     var today = HOURS[now.day];
     if (today && now.mins >= today[0] && now.mins < today[1]){
       pill.setAttribute('data-state','open');

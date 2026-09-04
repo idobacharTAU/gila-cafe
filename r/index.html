@@ -11,16 +11,23 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@700;900&family=Assistant:wght@400;600;700&display=swap">
 
 <!--  ┌──────────────────────────────────────────────────────────────────────┐
-      │  WHEN THE GOOGLE BUSINESS PROFILE IS VERIFIED:                       │
-      │  1. get the short review link from the profile  (g.page/r/…/review)  │
-      │  2. paste it into GOOGLE_REVIEW_URL below                            │
-      │  3. commit + push. The printed QR codes never change.                │
-      │                                                                       │
-      │  Until then the Google button stays hidden — sending someone to an   │
-      │  empty Maps search is worse than not offering it at all.             │
+      │  GOOGLE REVIEW LINK — live; verified by hand on 04.09.2026.          │
+      │  The Business Profile is verified (5.0 from 4 reviews), so the       │
+      │  Google button below is active and is the primary ask on this page.  │
+      │                                                                      │
+      │  The placeid in the URL is Gila's own:                               │
+      │      ChIJdykL5yW3AhURvq7gdRcDonY                                     │
+      │  It is the Place ID of the same listing whose Maps CID is            │
+      │      https://maps.google.com/?cid=8548398441999412926                │
+      │  i.e. the identical place, expressed as a decimal CID rather than    │
+      │  as an encoded Place ID. Checked by hand — the link opens the        │
+      │  star-rating dialog on Gila's profile, not a Maps search.            │
+      │  The URL is hardcoded in the review button's href below, so the      │
+      │  button works with or without JavaScript.                            │
+      │                                                                      │
+      │  Every printed QR code points at this page: do not change its path   │
+      │  (/r/), its filename or its structure. Only the contents.            │
       └──────────────────────────────────────────────────────────────────────┘ -->
-<script>const GOOGLE_REVIEW_URL = "";</script>
-
 <style>
 :root{
   --green:#446247;--green-deep:#2C4B30;--cream:#EEE6D9;--page:#FFFBF3;
@@ -45,8 +52,19 @@ a.btn{
 }
 a.primary{background:var(--cream);color:var(--green-deep)}
 a.ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(238,230,217,.32)}
+p.hint{margin:-4px 0 16px;font-size:.87rem;line-height:1.5;color:#8FA98E}
 .foot{margin-top:18px;font-size:.86rem;color:#8FA98E}
-.foot a{color:#B9CDB8}
+.foot a{
+  color:#B9CDB8;
+  /* The phone number is the one thing on this page a customer taps with a thumb.
+     As inline text its hit area was 76x18 CSS px — under the 24x24 WCAG minimum
+     and well under Apple's 44pt. The padding grows the tap area to ~96x44;
+     the matching negative margin keeps the footer sitting exactly where it did. */
+  display:inline-block;
+  padding:13px 10px;
+  margin:-13px -10px;
+  -webkit-tap-highlight-color:rgba(238,230,217,.18);
+}
 </style>
 </head>
 <body>
@@ -55,22 +73,13 @@ a.ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(238,23
   <h1>תודה שבאתם</h1>
   <p class="lede">שמחנו לארח אתכם. אם בא לכם להישאר בקשר —</p>
 
-  <a class="btn primary" id="google" href="#" hidden>לכתוב לנו ביקורת בגוגל</a>
-  <a class="btn primary" href="https://instagram.com/gila.cafe">לעקוב אחרינו באינסטגרם</a>
+  <a class="btn primary" id="google" href="https://search.google.com/local/writereview?placeid=ChIJdykL5yW3AhURvq7gdRcDonY">לכתוב לנו ביקורת בגוגל</a>
+  <p class="hint" id="googleHint">כמה מילים כנות לוקחות חצי דקה — ועוזרות לנו מאוד.</p>
+
+  <a class="btn ghost" id="instagram" href="https://instagram.com/gila.cafe">לעקוב אחרינו באינסטגרם</a>
   <a class="btn ghost" href="../">לדף של גילא</a>
 
-  <p class="foot">שאול המלך 7, נס ציונה · <a href="tel:0544588849">054-458-8849</a></p>
+  <p class="foot">שאול המלך 7, נס ציונה · <a href="tel:0544588849"><span style="direction:ltr;unicode-bidi:isolate;white-space:nowrap">054-458-8849</span></a></p>
 </div>
-
-<script>
-// The Google button only appears once a real review link exists.
-if (GOOGLE_REVIEW_URL) {
-  const g = document.getElementById('google');
-  g.href = GOOGLE_REVIEW_URL;
-  g.hidden = false;
-  // Once Google is live it becomes the primary ask; Instagram steps down a level.
-  document.querySelectorAll('a.btn.primary')[1].className = 'btn ghost';
-}
-</script>
 </body>
 </html>
