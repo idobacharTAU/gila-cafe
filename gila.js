@@ -53,19 +53,29 @@
   } else Array.prototype.forEach.call(els,function(el){ el.classList.add("in"); });
 })();
 
-/* lightbox for any <button data-lb><img></button>, and calm motion: videos pause under reduced-motion */
+/* lightbox for any <button data-lb="big.webp"><img></button> — arrows, swipe, counter, Esc */
 (function(){
   var rm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   Array.prototype.forEach.call(document.querySelectorAll("video[autoplay]"),function(v){ if(rm){ v.removeAttribute("autoplay"); v.pause(); } });
-  var btns = document.querySelectorAll("[data-lb]"); if(!btns.length) return;
-  var lb=document.createElement("div"); lb.className="lb"; lb.hidden=true;
-  lb.innerHTML='<button class="x" type="button" aria-label="סגירה">&#10005;</button><img alt="">';
+  var btns = Array.prototype.slice.call(document.querySelectorAll("[data-lb]")); if(!btns.length) return;
+  var lb=document.createElement("div"); lb.className="lb"; lb.hidden=true; lb.setAttribute("role","dialog"); lb.setAttribute("aria-modal","true");
+  lb.innerHTML='<button class="x" type="button" aria-label="סגירה">&#10005;</button><button class="pv" type="button" aria-label="הקודמת">&#8250;</button><button class="nx" type="button" aria-label="הבאה">&#8249;</button><img alt=""><div class="ct"></div>';
   document.body.appendChild(lb);
-  var im=lb.querySelector("img"), last=null;
+  var im=lb.querySelector("img"), ct=lb.querySelector(".ct"), idx=0, last=null, sx=null;
+  function show(i){
+    idx=(i+btns.length)%btns.length; var b=btns[idx], t=b.querySelector("img");
+    im.src=b.getAttribute("data-lb"); im.alt=t?t.alt:""; ct.textContent=(idx+1)+" / "+btns.length;
+  }
+  function open(i,from){ last=from; show(i); lb.hidden=false; document.documentElement.style.overflow="hidden"; lb.querySelector(".x").focus(); }
   function close(){ lb.hidden=true; im.src=""; document.documentElement.style.overflow=""; if(last) last.focus(); }
-  Array.prototype.forEach.call(btns,function(b){ b.addEventListener("click",function(){
-    var i=b.querySelector("img"); last=b; im.src=b.getAttribute("data-lb"); im.alt=i?i.alt:"";
-    lb.hidden=false; document.documentElement.style.overflow="hidden"; lb.querySelector(".x").focus(); }); });
-  lb.addEventListener("click",close);
-  document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!lb.hidden) close(); });
+  btns.forEach(function(b,i){ b.addEventListener("click",function(){ open(i,b); }); });
+  lb.addEventListener("click",function(e){ if(e.target===lb||e.target===im||e.target.classList.contains("x")) close(); });
+  lb.querySelector(".nx").addEventListener("click",function(e){ e.stopPropagation(); show(idx+1); });
+  lb.querySelector(".pv").addEventListener("click",function(e){ e.stopPropagation(); show(idx-1); });
+  lb.addEventListener("touchstart",function(e){ sx=e.touches[0].clientX; },{passive:true});
+  lb.addEventListener("touchend",function(e){ if(sx===null) return; var dx=e.changedTouches[0].clientX-sx; sx=null; if(Math.abs(dx)>50) show(idx+(dx<0?1:-1)); });
+  document.addEventListener("keydown",function(e){
+    if(lb.hidden) return;
+    if(e.key==="Escape") close(); else if(e.key==="ArrowLeft") show(idx+1); else if(e.key==="ArrowRight") show(idx-1);
+  });
 })();

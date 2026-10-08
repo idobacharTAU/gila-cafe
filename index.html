@@ -18,8 +18,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&family=Assistant:wght@400;600;700&display=swap">
-<link rel="preload" as="image" href="photos/n-machine-800.jpg" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&family=Assistant:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&family=Assistant:wght@400;600;700&display=swap"></noscript>
+<link rel="preload" as="image" href="brand/logo-wordmark-cream.svg" fetchpriority="high">
+<link rel="preload" as="image" href="photos/hero-poster.webp" fetchpriority="high">
+<script>try{if(sessionStorage.getItem("gila-intro"))document.documentElement.classList.add("skip-intro")}catch(e){}</script>
 <link rel="stylesheet" href="gila.css">
 <script type="application/ld+json">
 {
@@ -31,16 +34,17 @@
   "openingHours":["Su 12:00-19:30","Mo-Th 07:45-19:30","Fr 07:45-15:00"],
   "url":"https://idobachartau.github.io/gila-cafe/",
   "hasMenu":"https://idobachartau.github.io/gila-cafe/menu/",
-  "image":["https://idobachartau.github.io/gila-cafe/photos/og.jpg","https://idobachartau.github.io/gila-cafe/photos/n-machine.jpg","https://idobachartau.github.io/gila-cafe/photos/n-awning.jpg"],
+  "image":["https://idobachartau.github.io/gila-cafe/photos/og.jpg","https://idobachartau.github.io/gila-cafe/photos/n-machine.webp","https://idobachartau.github.io/gila-cafe/photos/n-awning.webp"],
   "sameAs":["https://instagram.com/gila.cafe","https://maps.google.com/?cid=8548398441999412926"]
 }
 </script>
 </head>
 <body>
+<div class="intro" aria-hidden="true"><i></i><i></i><img class="badge" src="brand/logo-badge-cream.svg" alt="" width="120" height="109"></div>
 
-<nav class="nav" aria-label="ראשי">
+<nav class="nav nav--over" aria-label="ראשי">
   <div class="wrap">
-    <a class="brand" href="./"><img src="brand/logo-badge-green.svg" alt="" width="38" height="35">גילא</a>
+    <a class="brand" href="./"><img class="lg-g" src="brand/logo-badge-green.svg" alt="" width="38" height="35"><img class="lg-c" src="brand/logo-badge-cream.svg" alt="" width="38" height="35">גילא</a>
     <ul>
       <li><a href="menu/">תפריט</a></li>
       <li><a href="trays/">מגשי אירוח</a></li>
@@ -49,33 +53,31 @@
     </ul>
     <a class="btn btn-green btn-sm call" href="tel:+972544588849">התקשרו</a>
   </div>
+  <div class="progress" aria-hidden="true"></div>
 </nav>
 
-<header class="hero on-dark">
-  <div class="wrap">
-    <div>
-      <p class="eyebrow">בית קפה שכונתי · נס ציונה</p>
-      <h1>גילא</h1>
-      <p class="sub"><span>קפה טוב, מאפים טריים,</span> וכריכים שמישהו באמת הכין.</p>
-      <p class="tag">שאול המלך 7, נס ציונה</p>
-      <div class="status" id="status" data-status data-state="closed" role="status"><span class="dot"></span><span class="t">בודקים אם פתוח…</span></div>
-      <div class="row">
+<header class="hero2 on-dark" data-tod="day">
+  <div class="wrap hero-in">
+    <div class="hero-media" aria-hidden="true">
+      <video src="photos/hero.mp4" poster="photos/hero-poster.webp" autoplay muted loop playsinline preload="auto"></video>
+    </div>
+    <div class="hero-tx">
+      <p class="eyebrow" data-in="1">בית קפה שכונתי · נס ציונה</p>
+      <h1><img src="brand/logo-wordmark-cream.svg" alt="גילא" width="464" height="228"></h1>
+      <p class="greet" id="greet" data-in="3">קפה טוב, מאפים טריים, וכריכים שמישהו באמת הכין.</p>
+      <p class="sub" data-in="3">שאול המלך 7, נס ציונה.</p>
+      <div class="status" id="status" data-status data-state="closed" role="status" data-in="4"><span class="dot"></span><span class="t">בודקים אם פתוח…</span></div>
+      <div class="row" data-in="5">
         <a class="btn btn-cream" href="menu/">לתפריט</a>
         <a class="btn btn-line" href="trays/">מגשי אירוח</a>
         <a class="btn btn-line" href="https://waze.com/ul?q=%D7%A9%D7%90%D7%95%D7%9C%20%D7%94%D7%9E%D7%9C%D7%9A%207%20%D7%A0%D7%A1%20%D7%A6%D7%99%D7%95%D7%A0%D7%94&navigate=yes" rel="noopener">נווטו</a>
       </div>
     </div>
-    <div class="frame">
-      <div class="arch"><img src="photos/n-machine-800.jpg" srcset="photos/n-machine-800.jpg 800w, photos/n-machine.jpg 1200w" sizes="(min-width:900px) 460px, 90vw" width="800" height="1067" alt="מכונת האספרסו הירוקה של גילא וזר פרחים ליד החלון" fetchpriority="high"></div>
-      <a class="bubble" href="trays/" aria-label="מגשי אירוח"><video src="photos/vid3.mp4" poster="photos/vid3.jpg" autoplay muted loop playsinline preload="metadata"></video><span>מגשי אירוח ←</span></a>
-    </div>
   </div>
+  <span class="cue" aria-hidden="true"></span>
 </header>
 
-<div class="marquee" aria-hidden="true"><div class="track">
-  <span>אמריקנו</span><i>●</i><span>סינבון</span><i>●</i><span>מיני כריכים</span><i>●</i><span>מאצ׳ה</span><i>●</i><span>בייגלה</span><i>●</i><span>פרעצל קממבר</span><i>●</i><span>כוסות יוגורט</span><i>●</i><span>הפוך</span><i>●</i><span>ירקות וגבינה</span><i>●</i><span>נמסיס שוקולד</span><i>●</i>
-  <span>אמריקנו</span><i>●</i><span>סינבון</span><i>●</i><span>בייגל סלמון</span><i>●</i><span>מאצ׳ה</span><i>●</i><span>מסקרפונה</span><i>●</i><span>פרעצל קממבר</span><i>●</i><span>הפוך</span><i>●</i><span>גאודה עיזים</span><i>●</i><span>נמסיס שוקולד</span><i>●</i><span>כוסמין אבוקדו</span><i>●</i>
-</div></div>
+<div class="marquee" aria-hidden="true"><div class="track"><span>אמריקנו</span><i>●</i><span>סינבון</span><i>●</i><span>מיני כריכים</span><i>●</i><span>מאצ׳ה</span><i>●</i><span>בייגלה</span><i>●</i><span>פרעצל קממבר</span><i>●</i><span>כוסות יוגורט</span><i>●</i><span>הפוך</span><i>●</i><span>ירקות וגבינה</span><i>●</i><span>נמסיס שוקולד</span><i>●</i><span>אמריקנו</span><i>●</i><span>סינבון</span><i>●</i><span>מיני כריכים</span><i>●</i><span>מאצ׳ה</span><i>●</i><span>בייגלה</span><i>●</i><span>פרעצל קממבר</span><i>●</i><span>כוסות יוגורט</span><i>●</i><span>הפוך</span><i>●</i><span>ירקות וגבינה</span><i>●</i><span>נמסיס שוקולד</span><i>●</i></div></div>
 
 <main>
 <section>
@@ -87,21 +89,41 @@
     </div>
     <div class="doors">
       <a class="door rv" href="menu/">
-        <div class="ph"><img src="photos/n-counter-800.jpg" loading="lazy" width="800" height="1067" alt="הדלפק של גילא — כיפות זכוכית עם מאפים ותצוגת כריכים"></div>
+        <div class="ph"><img src="photos/n-counter-800.webp" loading="lazy" width="800" height="1067" alt="הדלפק של גילא — כיפות זכוכית עם מאפים ותצוגת כריכים"></div>
         <div class="tx"><span class="num">01</span><h3>הדלפק</h3><p>קפה, מאפים וכריכים. מתיישבים במרפסת או לוקחים איתכם.</p><span class="go">לתפריט ←</span></div>
       </a>
       <a class="door rv" href="trays/" style="transition-delay:.08s">
-        <div class="ph"><img src="photos/t26-s.jpg" loading="lazy" width="525" height="700" alt="ארבע קופסאות אירוח לבנות מלאות, מבט מלמעלה" style="object-position:center 45%"></div>
+        <div class="ph"><img src="photos/t26-s.webp" loading="lazy" width="525" height="700" alt="ארבע קופסאות אירוח לבנות מלאות, מבט מלמעלה" style="object-position:center 45%"></div>
         <div class="tx"><span class="num">02</span><h3>מגשי אירוח</h3><p>מיני כריכים, בייגלה, כוסות יוגורט וירקות. כשהשולחן גדול מהרגיל.</p><span class="go">לבניית מגש ←</span></div>
       </a>
       <a class="door rv" href="b2b/" style="transition-delay:.16s">
-        <div class="ph"><img src="photos/t27-s.jpg" loading="lazy" width="525" height="700" alt="קופסאות כריכים מונחות על שולחן מול חלון גילא" style="object-position:center 72%"></div>
+        <div class="ph"><img src="photos/t27-s.webp" loading="lazy" width="525" height="700" alt="קופסאות כריכים מונחות על שולחן מול חלון גילא" style="object-position:center 72%"></div>
         <div class="tx"><span class="num">03</span><h3>לבתי קפה ועגלות</h3><p>הכריכים שלנו, בתצוגה שלכם. מספרים לנו על העסק, ואנחנו חוזרים עם הצעה.</p><span class="go">לפרטים ←</span></div>
       </a>
     </div>
   </div>
 </section>
 
+
+<section class="story" aria-label="מהמטבח לשולחן">
+  <div class="stage">
+    <div class="shots">
+      <img class="on" src="photos/t06.webp" width="1050" height="1400" alt="ערימת קופסאות אירוח לבנות מול חלון גילא" loading="lazy">
+      <img src="photos/t26.webp" width="1050" height="1400" alt="מגש אירוח מעורב, מבט מלמעלה" loading="lazy">
+      <img src="photos/n-awning.webp" width="1200" height="1600" alt="המרפסת של גילא מתחת לסוכך הירוק" loading="lazy">
+    </div>
+    <div class="copy">
+      <p class="eyebrow">מהמטבח לשולחן</p>
+      <div class="steps2">
+        <div class="st on"><h2>מרכיבים.</h2><p>מיני כריכים, בייגלה, כוסות יוגורט, ירקות וגבינה. הכל מהתפריט של הדלפק.</p></div>
+        <div class="st"><h2>אורזים.</h2><p>קופסה לבנה, מלאה עד הקצה.</p></div>
+        <div class="st"><h2>מגיעים לשולחן.</h2><p>שלכם. ואם בא לכם לשבת, יש מרפסת.</p></div>
+      </div>
+      <div class="dots2" aria-hidden="true"><b class="on"></b><b></b><b></b></div>
+      <div class="row"><a class="btn btn-cream" href="trays/">בונים מגש</a></div>
+    </div>
+  </div>
+</section>
 
 <section class="s-dark on-dark">
   <div class="wrap">
@@ -111,10 +133,10 @@
       <p class="lede">מיני כריכים, בייגלה, כוסות יוגורט וירקות. קופסה לבנה, מגש מלא.</p>
     </div>
     <div class="bento rv">
-      <a class="big" href="trays/"><img src="photos/t26.jpg" loading="lazy" width="1050" height="1400" alt="מגש אירוח: מאפים, כוסות יוגורט, ירקות וכריכים קטנים" style="object-position:center 50%"><span class="cap">מגש מעורב</span></a>
-      <a class="tall" href="trays/"><img src="photos/t06-s.jpg" loading="lazy" width="525" height="700" alt="ערימת קופסאות אירוח מול חלון גילא"><span class="cap">מוכן לדרך</span></a>
-      <a href="trays/"><img src="photos/t13-s.jpg" loading="lazy" width="467" height="700" alt="בייגלה עם סלמון ואבוקדו"><span class="cap">בייגלה</span></a>
-      <a class="wide" href="trays/"><video src="photos/vid2.mp4" poster="photos/vid2.jpg" autoplay muted loop playsinline preload="none"></video><span class="cap">פותחים קופסה</span></a>
+      <a class="big" href="trays/"><img src="photos/t26.webp" loading="lazy" width="1050" height="1400" alt="מגש אירוח: מאפים, כוסות יוגורט, ירקות וכריכים קטנים" style="object-position:center 50%"><span class="cap">מגש מעורב</span></a>
+      <a class="tall" href="trays/"><img src="photos/t06-s.webp" loading="lazy" width="525" height="700" alt="ערימת קופסאות אירוח מול חלון גילא"><span class="cap">מוכן לדרך</span></a>
+      <a href="trays/"><img src="photos/t13-s.webp" loading="lazy" width="467" height="700" alt="בייגלה עם סלמון ואבוקדו"><span class="cap">בייגלה</span></a>
+      <a class="wide" href="trays/"><video src="photos/vid2.mp4" poster="photos/vid2.webp" autoplay muted loop playsinline preload="none"></video><span class="cap">פותחים קופסה</span></a>
     </div>
     <div class="row"><a class="btn btn-cream" href="trays/">לכל המגשים</a><a class="btn btn-line" href="b2b/">לבתי קפה ועגלות</a></div>
   </div>
@@ -128,11 +150,11 @@
     </div>
   </div>
   <div class="rail">
-    <figure class="rv"><div class="arch"><img src="photos/n-pastries-800.jpg" loading="lazy" width="800" height="1067" alt="דנישים וסינבון על נייר אפייה"></div><figcaption>המאפים<small>סינבון, מסקרפונה, פולנטה</small></figcaption></figure>
-    <figure class="rv"><div class="arch"><img src="photos/n-counter-800.jpg" loading="lazy" width="800" height="1067" alt="הדלפק עם כיפות זכוכית ותצוגת כריכים"></div><figcaption>התצוגה<small>כריכים בתצוגה</small></figcaption></figure>
-    <figure class="rv"><div class="arch"><img src="photos/n-bite-800.jpg" loading="lazy" width="800" height="1067" alt="אורחת נוגסת בטוסט במרפסת"></div><figcaption>הטוסט<small>קסטן, טונה, הטוסט</small></figcaption></figure>
-    <figure class="rv"><div class="arch"><img src="photos/n-machine-wide-800.jpg" loading="lazy" width="800" height="1067" alt="מכונת האספרסו הירוקה מאחורי הדלפק"></div><figcaption>הקפה<small>מכונה ירוקה, תפריט קצר</small></figcaption></figure>
-    <figure class="rv"><div class="arch"><img src="photos/n-sunset2-800.jpg" loading="lazy" width="800" height="1067" alt="שקיעה מעל המרפסת"></div><figcaption>שקיעה<small>במרפסת</small></figcaption></figure>
+    <figure class="rv"><div class="arch"><img src="photos/n-pastries-800.webp" loading="lazy" width="800" height="1067" alt="דנישים וסינבון על נייר אפייה"></div><figcaption>המאפים<small>סינבון, מסקרפונה, פולנטה</small></figcaption></figure>
+    <figure class="rv"><div class="arch"><img src="photos/n-counter-800.webp" loading="lazy" width="800" height="1067" alt="הדלפק עם כיפות זכוכית ותצוגת כריכים"></div><figcaption>התצוגה<small>כריכים בתצוגה</small></figcaption></figure>
+    <figure class="rv"><div class="arch"><img src="photos/n-bite-800.webp" loading="lazy" width="800" height="1067" alt="אורחת נוגסת בטוסט במרפסת"></div><figcaption>הטוסט<small>קסטן, טונה, הטוסט</small></figcaption></figure>
+    <figure class="rv"><div class="arch"><img src="photos/n-machine-wide-800.webp" loading="lazy" width="800" height="1067" alt="מכונת האספרסו הירוקה מאחורי הדלפק"></div><figcaption>הקפה<small>מכונה ירוקה, תפריט קצר</small></figcaption></figure>
+    <figure class="rv"><div class="arch"><img src="photos/n-sunset2-800.webp" loading="lazy" width="800" height="1067" alt="שקיעה מעל המרפסת"></div><figcaption>שקיעה<small>במרפסת</small></figcaption></figure>
   </div>
 </section>
 
@@ -175,13 +197,13 @@
       <p class="lede">מתחת לסוכך יש מקום לשבת בלי למהר. הקפה יוצא מהמכונה הירוקה, והמרפסת שלכם.</p>
       <div class="row"><a class="btn btn-cream" href="#find">איך מגיעים</a><a class="btn btn-line" href="https://instagram.com/gila.cafe" rel="noopener">@<span class="ltr">gila.cafe</span></a></div>
     </div>
-    <div class="photo tall rv"><img src="photos/n-awning-800.jpg" srcset="photos/n-awning-800.jpg 800w, photos/n-awning.jpg 1200w" sizes="(min-width:900px) 520px, 92vw" loading="lazy" width="800" height="1067" alt="המרפסת של גילא מתחת לסוכך הירוק, אורחים יושבים ליד שולחנות"></div>
+    <div class="photo tall rv"><img src="photos/n-awning-800.webp" srcset="photos/n-awning-800.webp 800w, photos/n-awning.webp 1200w" sizes="(min-width:900px) 520px, 92vw" loading="lazy" width="800" height="1067" alt="המרפסת של גילא מתחת לסוכך הירוק, אורחים יושבים ליד שולחנות"></div>
   </div>
 </section>
 
 <section>
   <div class="wrap split">
-    <div class="photo wide rv" style="aspect-ratio:4/5"><img src="photos/n-sunset-800.jpg" loading="lazy" width="800" height="1067" alt="שקיעה כתומה מעל המרפסת, שלט גילא בכניסה"></div>
+    <div class="photo wide rv" style="aspect-ratio:4/5"><img src="photos/n-sunset-800.webp" loading="lazy" width="800" height="1067" alt="שקיעה כתומה מעל המרפסת, שלט גילא בכניסה"></div>
     <div class="rv">
       <p class="eyebrow">הצד העסקי של גילא</p>
       <h2>בית קפה או עגלה? <span class="mark">נדבר.</span></h2>
@@ -226,9 +248,12 @@
   </div>
 </footer>
 
-<a class="fab" href="https://wa.me/972544588849?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%90" rel="noopener">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.6.3.1.2.1.8-.1 1.4Z"/></svg>וואטסאפ
-</a>
+<nav class="abar" aria-label="פעולות מהירות">
+  <a href="tel:+972544588849"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>התקשרו</a>
+  <a class="pri" href="https://wa.me/972544588849?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%90" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.6.3.1.2.1.8-.1 1.4Z"/></svg>וואטסאפ</a>
+  <a href="https://waze.com/ul?q=%D7%A9%D7%90%D7%95%D7%9C%20%D7%94%D7%9E%D7%9C%D7%9A%207%20%D7%A0%D7%A1%20%D7%A6%D7%99%D7%95%D7%A0%D7%94&navigate=yes" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>נווטו</a>
+</nav>
 <script src="gila.js"></script>
+<script src="fx.js"></script>
 </body>
 </html>
