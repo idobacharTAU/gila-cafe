@@ -1,0 +1,71 @@
+/* גילא — shared behaviour. HOURS is the single source of truth for the live pill,
+   the highlighted row in the hours table and anything else that needs "is it open". */
+(function(){
+  "use strict";
+  document.documentElement.classList.remove("no-js");
+
+  // minutes from midnight, JS day index (0 = Sunday). null = closed.
+  // Sun 12:00–19:30 · Mon–Thu 07:45–19:30 · Fri 07:45–15:00 · Sat closed
+  var HOURS = [[720,1170],[465,1170],[465,1170],[465,1170],[465,1170],[465,900],null];
+  var DAY_NAMES = ["ראשון","שני","שלישי","רביעי","חמישי","שישי","שבת"];
+  window.GILA_HOURS = HOURS;
+
+  function israelNow(){
+    var p = new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Jerusalem",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date());
+    var g = function(t){ return p.find(function(x){return x.type===t;}).value; };
+    var d = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    var o = window.GILA_NOW_OVERRIDE;            // test hook: {day, mins}
+    return o || { day:d[g("weekday")], mins:(+g("hour"))*60 + (+g("minute")) };
+  }
+  function hhmm(m){ return String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0"); }
+  function nextOpening(day){
+    for (var i=1;i<=7;i++){ var d=(day+i)%7; if (HOURS[d]) return {day:d,at:HOURS[d][0],tomorrow:i===1}; }
+    return null;
+  }
+
+  function render(){
+    var now = israelNow(), today = HOURS[now.day], html, state;
+    if (today && now.mins>=today[0] && now.mins<today[1]){
+      state="open"; var left=today[1]-now.mins;
+      html = left<=60 ? "פתוח · נסגר בעוד <b>"+left+"</b> דק׳" : "פתוח עכשיו · עד <b>"+hhmm(today[1])+"</b>";
+    } else {
+      state="closed";
+      if (today && now.mins<today[0]) html = "סגור · נפתח היום ב־<b>"+hhmm(today[0])+"</b>";
+      else { var nx=nextOpening(now.day);
+        html = nx ? "סגור · נפתח "+(nx.tomorrow?"מחר":"ביום "+DAY_NAMES[nx.day])+" ב־<b>"+hhmm(nx.at)+"</b>" : "סגור"; }
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("[data-status]"),function(el){
+      el.setAttribute("data-state",state); var t=el.querySelector(".t"); if(t) t.innerHTML=html;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("#hours tr"),function(tr){ tr.removeAttribute("data-today"); });
+    var row=document.querySelector('#hours tr[data-day="'+now.day+'"]'); if(row) row.setAttribute("data-today","1");
+  }
+  window.GILA_RENDER = render;
+  render(); setInterval(render,30000);
+
+  // reveal on scroll
+  var els = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    },{rootMargin:"0px 0px -8% 0px",threshold:.08});
+    Array.prototype.forEach.call(els,function(el){ io.observe(el); });
+  } else Array.prototype.forEach.call(els,function(el){ el.classList.add("in"); });
+})();
+
+/* lightbox for any <button data-lb><img></button>, and calm motion: videos pause under reduced-motion */
+(function(){
+  var rm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  Array.prototype.forEach.call(document.querySelectorAll("video[autoplay]"),function(v){ if(rm){ v.removeAttribute("autoplay"); v.pause(); } });
+  var btns = document.querySelectorAll("[data-lb]"); if(!btns.length) return;
+  var lb=document.createElement("div"); lb.className="lb"; lb.hidden=true;
+  lb.innerHTML='<button class="x" type="button" aria-label="סגירה">&#10005;</button><img alt="">';
+  document.body.appendChild(lb);
+  var im=lb.querySelector("img"), last=null;
+  function close(){ lb.hidden=true; im.src=""; document.documentElement.style.overflow=""; if(last) last.focus(); }
+  Array.prototype.forEach.call(btns,function(b){ b.addEventListener("click",function(){
+    var i=b.querySelector("img"); last=b; im.src=b.getAttribute("data-lb"); im.alt=i?i.alt:"";
+    lb.hidden=false; document.documentElement.style.overflow="hidden"; lb.querySelector(".x").focus(); }); });
+  lb.addEventListener("click",close);
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!lb.hidden) close(); });
+})();
