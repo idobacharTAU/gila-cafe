@@ -5,8 +5,8 @@
   document.documentElement.classList.remove("no-js");
 
   // minutes from midnight, JS day index (0 = Sunday). null = closed.
-  // Sun 12:00–19:30 · Mon–Thu 07:45–19:30 · Fri 07:45–16:00 · Sat closed
-  var HOURS = [[720,1170],[465,1170],[465,1170],[465,1170],[465,1170],[465,960],null];
+  // Sun 09:00–19:30 · Mon–Thu 07:45–19:30 · Fri 07:45–16:00 · Sat closed
+  var HOURS = [[540,1170],[465,1170],[465,1170],[465,1170],[465,1170],[465,960],null];
   var DAY_NAMES = ["ראשון","שני","שלישי","רביעי","חמישי","שישי","שבת"];
   window.GILA_HOURS = HOURS;
 
