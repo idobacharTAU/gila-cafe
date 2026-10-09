@@ -81,7 +81,7 @@ body{
 .pdf svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
 /* ── Sticky category nav ──────────────────────────────────────────────── */
-.catnav{position:sticky;top:0;z-index:5;margin-top:26px;background:rgba(255,251,243,.95);border-bottom:1px solid var(--rule)}
+.catnav{position:sticky;top:0;z-index:5;margin-top:0;background:rgba(255,251,243,.95);border-bottom:1px solid var(--rule)}
 @supports (backdrop-filter:blur(8px)){.catnav{backdrop-filter:blur(8px)}}
 .catnav .strip{display:flex;gap:8px;overflow-x:auto;padding:11px 22px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .catnav .strip::-webkit-scrollbar{display:none}
@@ -96,6 +96,15 @@ body{
 .catnav a.on{background:var(--green);border-color:var(--green);color:var(--cream)}
 .catnav a.on .cn{color:rgba(238,230,217,.7)}
 .catnav a:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
+
+/* wide screens: the phone column becomes a two-column menu board */
+@media (min-width:900px){
+  .wrap{max-width:1040px;padding:0 32px}
+  .hero{padding-bottom:48px}
+  .catnav .strip{justify-content:center;padding:13px 32px}
+  main.wrap{columns:2;column-gap:20px;padding-top:6px}
+  main.wrap .cat{break-inside:avoid;margin-bottom:20px;padding:26px 26px}
+}
 
 /* ── Category cards ───────────────────────────────────────────────────── */
 main{padding:22px 0 8px}
@@ -209,12 +218,6 @@ footer a:focus-visible,.pdf:focus-visible{outline:2px solid var(--terracotta);ou
     </div>
   </div>
 </header>
-
-<div class="wrap">
-  <div class="intro">
-    <p>התפריט המלא של גילא.</p>
-  </div>
-</div>
 
 <nav class="catnav" id="catnav" aria-label="קטגוריות התפריט">
   <div class="wrap" style="padding:0">
